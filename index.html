@@ -1,0 +1,1720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Caffeine Cove — Your Little Escape | Specialty Coffee & Pastries</title>
+  <meta name="description" content="Discover Caffeine Cove, a warm and elegant neighborhood specialty coffee house. Handcrafted espresso, artisanal pastries, and cozy corners designed for slowing down.">
+  <meta name="keywords" content="Caffeine Cove, specialty coffee, artisanal cafe, velvet latte, fresh pastries, espresso, coffee shop, cozy cafe">
+  <meta name="theme-color" content="#211713">
+
+  <!-- Open Graph / Social Sharing -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://caffeinecove.cafe/">
+  <meta property="og:title" content="Caffeine Cove — Your Little Escape">
+  <meta property="og:description" content="Handcrafted coffee, comforting spaces, and little moments worth slowing down for. Visit Caffeine Cove today.">
+  <meta property="og:image" content="images/hero_coffee_latte.jpg">
+
+  <!-- Twitter Meta -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Caffeine Cove — Your Little Escape">
+  <meta name="twitter:description" content="Coffee · Comfort · Connection. Handcrafted single-origin coffee and freshly baked pastries.">
+  <meta name="twitter:image" content="images/hero_coffee_latte.jpg">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+  <!-- Google Fonts: Cormorant Garamond, DM Sans, Allura -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="style.css?v=4">
+
+  <!-- Schema.org Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CafeOrCoffeeShop",
+    "name": "Caffeine Cove",
+    "image": "images/cafe_exterior_facade.jpg",
+    "description": "Artisanal neighborhood specialty coffee house offering single-origin espresso, cold brews, and freshly baked pastries in a warm, cozy setting.",
+    "telephone": "+919876543210",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "123 Coffee Lane",
+      "addressLocality": "Dream City",
+      "postalCode": "12345",
+      "addressCountry": "IN"
+    },
+    "openingHours": "Mo-Su 08:00-23:00",
+    "priceRange": "₹₹",
+    "servesCuisine": "Specialty Coffee, Bakery, Desserts"
+  }
+  </script>
+</head>
+<body>
+  <!-- Accessible Skip Link -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Floating Toast Notification -->
+  <div id="toast-notification" class="toast" role="status" aria-live="polite"></div>
+
+  <!-- Header / Navigation -->
+  <header class="site-header" id="header">
+    <div class="header-container">
+      <!-- Brand Logo -->
+      <a href="#hero" class="brand-logo" aria-label="Caffeine Cove Home">
+        <svg class="logo-icon" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+          <circle cx="20" cy="20" r="18" stroke="#B7835A" stroke-width="1.2" stroke-dasharray="2 2"/>
+          <path d="M15 11C14.5 9 15.5 8 16 7" stroke="#B7835A" stroke-width="1.2" stroke-linecap="round"/>
+          <path d="M20 10C19.5 8 20.5 7 21 5.5" stroke="#E6D6C3" stroke-width="1.2" stroke-linecap="round"/>
+          <path d="M25 11C24.5 9 25.5 8 26 7" stroke="#B7835A" stroke-width="1.2" stroke-linecap="round"/>
+          <path d="M11 15H29V23C29 27.5 25 30 20 30C15 30 11 27.5 11 23V15Z" fill="#302019" stroke="#E6D6C3" stroke-width="1.5"/>
+          <path d="M29 17H31.5C33 17 34 18 34 19.5C34 21 33 22 31.5 22H29" stroke="#E6D6C3" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M14 21C16.5 23 19 20 21.5 21C24 22 25.5 21 26 20" stroke="#B7835A" stroke-width="1" stroke-linecap="round"/>
+          <path d="M8 31C13 33.5 27 33.5 32 31" stroke="#B7835A" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        <div class="brand-text">
+          <span class="brand-name">CAFFEINE COVE</span>
+          <span class="brand-tagline">YOUR LITTLE ESCAPE</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Menu -->
+      <nav class="desktop-nav" aria-label="Primary Navigation">
+        <ul class="nav-list">
+          <li><a href="#hero" class="nav-link active">Home</a></li>
+          <li><a href="#signature-menu" class="nav-link">Menu</a></li>
+          <li><a href="#philosophy" class="nav-link">Our Story</a></li>
+          <li><a href="#gallery" class="nav-link">Gallery</a></li>
+          <li><a href="#reviews" class="nav-link">Reviews</a></li>
+          <li><a href="#visit" class="nav-link">Visit Us</a></li>
+        </ul>
+      </nav>
+
+      <!-- Header Actions -->
+      <div class="header-actions">
+        <!-- Currency Selector -->
+        <button id="currency-toggle" class="currency-toggle" aria-label="Toggle currency between INR and USD" title="Switch Currency (₹ INR / $ USD)">
+          <span class="curr-opt active" data-curr="INR">₹ INR</span>
+          <span class="curr-divider">/</span>
+          <span class="curr-opt" data-curr="USD">$ USD</span>
+        </button>
+
+        <!-- Tasting Tray / Bag Drawer Toggle -->
+        <button id="tray-toggle-btn" class="tray-toggle-btn" aria-label="Open Tasting Tray" title="View Selected Items">
+          <svg class="action-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <path d="M16 10a4 4 0 0 1-8 0"/>
+          </svg>
+          <span class="tray-count" id="tray-count" aria-live="polite">0</span>
+        </button>
+
+        <!-- Reserve CTA Button -->
+        <a href="#reservation-box" class="btn btn-pill-outline header-reserve-btn">Reserve a Table</a>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button id="mobile-menu-toggle" class="mobile-toggle" aria-label="Toggle Navigation Menu" aria-expanded="false" aria-controls="mobile-nav-drawer">
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobile-nav-drawer" class="mobile-drawer" aria-hidden="true">
+      <div class="mobile-drawer-header">
+        <div class="brand-text">
+          <span class="brand-name">CAFFEINE COVE</span>
+          <span class="brand-tagline">YOUR LITTLE ESCAPE</span>
+        </div>
+        <button id="mobile-close-btn" class="drawer-close-btn" aria-label="Close navigation menu">✕</button>
+      </div>
+      <ul class="mobile-nav-list">
+        <li><a href="#hero" class="mobile-nav-link">Home</a></li>
+        <li><a href="#signature-menu" class="mobile-nav-link">Menu</a></li>
+        <li><a href="#philosophy" class="mobile-nav-link">Our Story</a></li>
+        <li><a href="#treats" class="mobile-nav-link">Treats & Bakery</a></li>
+        <li><a href="#gallery" class="mobile-nav-link">Gallery</a></li>
+        <li><a href="#reviews" class="mobile-nav-link">Reviews</a></li>
+        <li><a href="#visit" class="mobile-nav-link">Visit Us</a></li>
+      </ul>
+      <div class="mobile-drawer-footer">
+        <a href="#reservation-box" class="btn btn-caramel mobile-reserve-btn">Reserve a Table</a>
+        <div class="mobile-quick-contact">
+          <p><span class="label">Opening Hours:</span> 8:00 AM – 11:00 PM</p>
+          <p><span class="label">Tel:</span> <a href="tel:+919876543210">+91 98765 43210</a></p>
+        </div>
+      </div>
+    </div>
+    <div id="mobile-drawer-backdrop" class="drawer-backdrop" aria-hidden="true"></div>
+  </header>
+
+  <!-- Main Content Wrapper -->
+  <main id="main-content">
+
+    <!-- ==================== HERO SECTION ==================== -->
+    <section class="hero-section" id="hero" aria-label="Introduction">
+      <!-- Enhanced Hero Background Photo & Atmospheric Coffeehouse Layers -->
+      <div class="hero-bg-wrapper" aria-hidden="true">
+        <img 
+          src="images/hero_coffee_latte.jpg" 
+          alt="Handcrafted ceramic cup with velvety latte art paired with a golden flaky croissant on rustic wooden table with morning sunlight" 
+          class="hero-bg-img"
+          fetchpriority="high"
+        >
+        <div class="hero-bg-overlay"></div>
+        <div class="hero-bg-vignette"></div>
+        <div class="hero-bg-glow"></div>
+      </div>
+
+      <div class="hero-container">
+        <!-- Hero Text Column -->
+        <div class="hero-content">
+          <div class="section-label-wrapper">
+            <span class="section-eyebrow">YOUR LITTLE ESCAPE.</span>
+            <span class="eyebrow-line"></span>
+          </div>
+          
+          <h1 class="hero-heading">
+            FIND YOUR<br>
+            <span class="highlight-serif">COVE OF COMFORT.</span>
+          </h1>
+          
+          <p class="hero-description">
+            Beautiful coffee, comforting spaces, and little moments worth slowing down for.
+          </p>
+
+          <div class="hero-cta-group">
+            <a href="#signature-menu" class="btn btn-caramel hero-primary-btn">
+              EXPLORE OUR MENU
+              <svg class="btn-arrow" viewBox="0 0 20 20" fill="none" stroke="currentColor">
+                <path d="M4 10h12M11 5l5 5-5 5" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+            <button id="open-story-video-btn" class="btn btn-pill-dark hero-secondary-btn" aria-label="Watch our story video">
+              OUR STORY
+              <span class="play-icon-circle">
+                <svg viewBox="0 0 16 16" fill="currentColor">
+                  <path d="M5.5 3.5l7 4.5-7 4.5v-9z"/>
+                </svg>
+              </span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Decorative Handwritten Accent Badge -->
+        <div class="hero-badge-col" aria-hidden="true">
+          <div class="hero-handwritten-badge">
+            <span class="cursive-text">Coffee<br>Makes Life<br>Better</span>
+            <svg class="handwritten-flourish" viewBox="0 0 100 20" fill="none">
+              <path d="M5 12C30 5 60 18 95 10C80 15 65 14 50 16" stroke="#B7835A" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Vertical Side Scroll Down Indicator -->
+      <a href="#philosophy" class="hero-scroll-indicator" aria-label="Scroll down to philosophy section">
+        <span class="scroll-track">
+          <span class="scroll-wheel"></span>
+        </span>
+        <span class="scroll-text">SCROLL DOWN</span>
+        <span class="scroll-line" aria-hidden="true"></span>
+      </a>
+    </section>
+
+    <!-- ==================== SECTION 8: OUR PHILOSOPHY ==================== -->
+    <section class="philosophy-section" id="philosophy" aria-labelledby="philosophy-heading">
+      <!-- Aesthetic Delicate Petite Floral Wallpaper Background (Light, Subtle, Seamless) -->
+      <div class="philosophy-floral-wallpaper" aria-hidden="true">
+        <svg class="wallpaper-svg" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <!-- Seamless Delicate Floral Wallpaper Tile (110px x 110px) -->
+            <pattern id="coffeeFloralWallpaper" width="110" height="110" patternUnits="userSpaceOnUse">
+              <!-- Center 5-Petal Petite Coffee Blossom (Span ~18px) -->
+              <g class="p-flower-center" transform="translate(55, 55)">
+                <!-- Petals with soft ivory fill and warm mocha outline -->
+                <path d="M0 0 C-4 -8 -3 -12 0 -12 C3 -12 4 -8 0 0 Z" fill="#FFFDF9" stroke="#A68469" stroke-width="0.75"/>
+                <path d="M0 0 C8 -5 12 -4 12 -1 C12 2 8 4 0 0 Z" fill="#FFFDF9" stroke="#A68469" stroke-width="0.75"/>
+                <path d="M0 0 C6 7 8 11 5 12 C2 13 -1 8 0 0 Z" fill="#FFFDF9" stroke="#A68469" stroke-width="0.75"/>
+                <path d="M0 0 C-6 8 -9 11 -11 9 C-13 7 -8 2 0 0 Z" fill="#FFFDF9" stroke="#A68469" stroke-width="0.75"/>
+                <path d="M0 0 C-8 -2 -12 -5 -11 -8 C-10 -11 -5 -6 0 0 Z" fill="#FFFDF9" stroke="#A68469" stroke-width="0.75"/>
+                <!-- Delicate Center Veins -->
+                <line x1="0" y1="0" x2="0" y2="-9" stroke="#C8A585" stroke-width="0.5"/>
+                <line x1="0" y1="0" x2="8" y2="-2" stroke="#C8A585" stroke-width="0.5"/>
+                <line x1="0" y1="0" x2="4" y2="8" stroke="#C8A585" stroke-width="0.5"/>
+                <line x1="0" y1="0" x2="-7" y2="6" stroke="#C8A585" stroke-width="0.5"/>
+                <line x1="0" y1="0" x2="-7" y2="-5" stroke="#C8A585" stroke-width="0.5"/>
+                <!-- Golden Stamen Core -->
+                <circle cx="0" cy="0" r="2.4" fill="#C4965A"/>
+                <circle cx="0" cy="0" r="1.1" fill="#FFF7EB"/>
+              </g>
+
+              <!-- Top-Left Petite Blossom (Span ~14px) -->
+              <g class="p-flower-tl" transform="translate(18, 22)">
+                <path d="M0 0 C-3 -6 -2 -9 0 -9 C2 -9 3 -6 0 0 Z" fill="#FFFDF9" stroke="#A68469" stroke-width="0.7"/>
+                <path d="M0 0 C6 -3 9 -2 9 0 C9 2 6 3 0 0 Z" fill="#FFFDF9" stroke="#A68469" stroke-width="0.7"/>
+                <path d="M0 0 C4 6 6 8 4 9 C2 10 -1 6 0 0 Z" fill="#FFFDF9" stroke="#A68469" stroke-width="0.7"/>
+                <path d="M0 0 C-5 6 -8 8 -9 7 C-10 6 -6 2 0 0 Z" fill="#FFFDF9" stroke="#A68469" stroke-width="0.7"/>
+                <path d="M0 0 C-6 -2 -9 -4 -8 -6 C-7 -8 -4 -4 0 0 Z" fill="#FFFDF9" stroke="#A68469" stroke-width="0.7"/>
+                <circle cx="0" cy="0" r="1.8" fill="#C4965A"/>
+              </g>
+
+              <!-- Top-Right Petite Blossom (Span ~14px) -->
+              <g class="p-flower-tr" transform="translate(92, 24) rotate(35)">
+                <path d="M0 0 C-3 -6 -2 -9 0 -9 C2 -9 3 -6 0 0 Z" fill="#FFFDF9" stroke="#A68469" stroke-width="0.7"/>
+                <path d="M0 0 C6 -3 9 -2 9 0 C9 2 6 3 0 0 Z" fill="#FFFDF9" stroke="#A68469" stroke-width="0.7"/>
+                <path d="M0 0 C4 6 6 8 4 9 C2 10 -1 6 0 0 Z" fill="#FFFDF9" stroke="#A68469" stroke-width="0.7"/>
+                <path d="M0 0 C-5 6 -8 8 -9 7 C-10 6 -6 2 0 0 Z" fill="#FFFDF9" stroke="#A68469" stroke-width="0.7"/>
+                <path d="M0 0 C-6 -2 -9 -4 -8 -6 C-7 -8 -4 -4 0 0 Z" fill="#FFFDF9" stroke="#A68469" stroke-width="0.7"/>
+                <circle cx="0" cy="0" r="1.8" fill="#C4965A"/>
+              </g>
+
+              <!-- Bottom-Left Petite Blossom (Span ~13px) -->
+              <g class="p-flower-bl" transform="translate(22, 88) rotate(18)">
+                <path d="M0 0 C-3 -6 -2 -9 0 -9 C2 -9 3 -6 0 0 Z" fill="#FFFDF9" stroke="#A68469" stroke-width="0.7"/>
+                <path d="M0 0 C6 -3 9 -2 9 0 C9 2 6 3 0 0 Z" fill="#FFFDF9" stroke="#A68469" stroke-width="0.7"/>
+                <path d="M0 0 C4 6 6 8 4 9 C2 10 -1 6 0 0 Z" fill="#FFFDF9" stroke="#A68469" stroke-width="0.7"/>
+                <path d="M0 0 C-5 6 -8 8 -9 7 C-10 6 -6 2 0 0 Z" fill="#FFFDF9" stroke="#A68469" stroke-width="0.7"/>
+                <path d="M0 0 C-6 -2 -9 -4 -8 -6 C-7 -8 -4 -4 0 0 Z" fill="#FFFDF9" stroke="#A68469" stroke-width="0.7"/>
+                <circle cx="0" cy="0" r="1.7" fill="#C4965A"/>
+              </g>
+
+              <!-- Bottom-Right Petite Blossom (Span ~14px) -->
+              <g class="p-flower-br" transform="translate(88, 86) rotate(-25)">
+                <path d="M0 0 C-3 -6 -2 -9 0 -9 C2 -9 3 -6 0 0 Z" fill="#FFFDF9" stroke="#A68469" stroke-width="0.7"/>
+                <path d="M0 0 C6 -3 9 -2 9 0 C9 2 6 3 0 0 Z" fill="#FFFDF9" stroke="#A68469" stroke-width="0.7"/>
+                <path d="M0 0 C4 6 6 8 4 9 C2 10 -1 6 0 0 Z" fill="#FFFDF9" stroke="#A68469" stroke-width="0.7"/>
+                <path d="M0 0 C-5 6 -8 8 -9 7 C-10 6 -6 2 0 0 Z" fill="#FFFDF9" stroke="#A68469" stroke-width="0.7"/>
+                <path d="M0 0 C-6 -2 -9 -4 -8 -6 C-7 -8 -4 -4 0 0 Z" fill="#FFFDF9" stroke="#A68469" stroke-width="0.7"/>
+                <circle cx="0" cy="0" r="1.8" fill="#C4965A"/>
+              </g>
+
+              <!-- Connecting Botanical Vines & Leaves (Sage & Olive tones) -->
+              <!-- Vine 1: From TL towards Center -->
+              <path d="M24 28 Q34 38 46 47" fill="none" stroke="#8A927C" stroke-width="0.75" stroke-linecap="round"/>
+              <!-- Petite Leaf 1a -->
+              <path d="M31 34 C33 30 38 31 39 34 C38 37 33 37 31 34 Z" fill="#DCE3D2" stroke="#6F7960" stroke-width="0.65"/>
+              <!-- Petite Leaf 1b -->
+              <path d="M40 42 C44 42 46 46 45 48 C42 49 40 45 40 42 Z" fill="#DCE3D2" stroke="#6F7960" stroke-width="0.65"/>
+
+              <!-- Vine 2: From Center towards TR -->
+              <path d="M64 47 Q76 38 84 30" fill="none" stroke="#8A927C" stroke-width="0.75" stroke-linecap="round"/>
+              <!-- Petite Leaf 2a -->
+              <path d="M70 43 C70 39 74 37 77 39 C77 42 73 44 70 43 Z" fill="#DCE3D2" stroke="#6F7960" stroke-width="0.65"/>
+              <!-- Petite Leaf 2b -->
+              <path d="M78 34 C82 34 84 31 84 29 C81 29 79 32 78 34 Z" fill="#DCE3D2" stroke="#6F7960" stroke-width="0.65"/>
+
+              <!-- Vine 3: From Center towards BR -->
+              <path d="M63 63 Q74 72 82 80" fill="none" stroke="#8A927C" stroke-width="0.75" stroke-linecap="round"/>
+              <!-- Petite Leaf 3a -->
+              <path d="M70 69 C73 66 77 68 78 71 C75 73 71 72 70 69 Z" fill="#DCE3D2" stroke="#6F7960" stroke-width="0.65"/>
+
+              <!-- Vine 4: From BL towards Center -->
+              <path d="M28 82 Q38 72 47 63" fill="none" stroke="#8A927C" stroke-width="0.75" stroke-linecap="round"/>
+              <!-- Petite Leaf 4a -->
+              <path d="M35 77 C33 74 36 70 39 72 C39 75 36 78 35 77 Z" fill="#DCE3D2" stroke="#6F7960" stroke-width="0.65"/>
+
+              <!-- Petite Coffee Berry Accents (Warm terracotta / caramel) -->
+              <circle cx="48" cy="22" r="2.2" fill="#BA724C" stroke="#8A4E2F" stroke-width="0.5"/>
+              <circle cx="62" cy="88" r="2.2" fill="#BA724C" stroke="#8A4E2F" stroke-width="0.5"/>
+              <circle cx="8" cy="56" r="2.0" fill="#BA724C" stroke="#8A4E2F" stroke-width="0.5"/>
+              <circle cx="102" cy="54" r="2.0" fill="#BA724C" stroke="#8A4E2F" stroke-width="0.5"/>
+
+              <!-- Miniature 4-Petal Star Florets (Span ~7px) -->
+              <!-- Mid-Left Floret -->
+              <g transform="translate(14, 54)">
+                <circle cx="-3" cy="0" r="1.3" fill="#FFFDF9" stroke="#A68469" stroke-width="0.5"/>
+                <circle cx="3" cy="0" r="1.3" fill="#FFFDF9" stroke="#A68469" stroke-width="0.5"/>
+                <circle cx="0" cy="-3" r="1.3" fill="#FFFDF9" stroke="#A68469" stroke-width="0.5"/>
+                <circle cx="0" cy="3" r="1.3" fill="#FFFDF9" stroke="#A68469" stroke-width="0.5"/>
+                <circle cx="0" cy="0" r="1.0" fill="#C4965A"/>
+              </g>
+              <!-- Mid-Right Floret -->
+              <g transform="translate(98, 56)">
+                <circle cx="-3" cy="0" r="1.3" fill="#FFFDF9" stroke="#A68469" stroke-width="0.5"/>
+                <circle cx="3" cy="0" r="1.3" fill="#FFFDF9" stroke="#A68469" stroke-width="0.5"/>
+                <circle cx="0" cy="-3" r="1.3" fill="#FFFDF9" stroke="#A68469" stroke-width="0.5"/>
+                <circle cx="0" cy="3" r="1.3" fill="#FFFDF9" stroke="#A68469" stroke-width="0.5"/>
+                <circle cx="0" cy="0" r="1.0" fill="#C4965A"/>
+              </g>
+
+              <!-- Subtle Drifting Micro-Petals -->
+              <path d="M53 10 C56 6 58 7 57 10 C56 12 54 12 53 10 Z" fill="#FFFDF9" stroke="#B3937A" stroke-width="0.5"/>
+              <path d="M57 100 C60 96 62 97 61 100 C60 102 58 102 57 100 Z" fill="#FFFDF9" stroke="#B3937A" stroke-width="0.5"/>
+            </pattern>
+          </defs>
+          <!-- Repeating wallpaper pattern fill -->
+          <rect width="100%" height="100%" fill="url(#coffeeFloralWallpaper)"/>
+        </svg>
+        <div class="wallpaper-vignette"></div>
+      </div>
+
+      <div class="container philosophy-container">
+        <!-- Left: Arched Café Interior Photograph -->
+        <div class="philosophy-image-col">
+          <div class="arch-image-card">
+            <img 
+              src="images/cafe_cozy_corner.jpg" 
+              alt="Warm cozy corner of Caffeine Cove with round wooden tables, bentwood chairs, and soft amber pendant lights" 
+              class="arch-img"
+              loading="lazy"
+              width="800" 
+              height="600"
+            >
+            <!-- Circular EST. 2025 Badge -->
+            <div class="est-badge" aria-label="Established 2025">
+              <span class="est-label">EST.</span>
+              <span class="est-year">2025</span>
+              <svg class="badge-branch-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path d="M12 22V8M12 8C12 5 15 3 18 3M12 8C12 5 9 3 6 3M12 14C15 13 18 15 20 18M12 14C9 13 6 15 4 18" stroke-width="1.4" stroke-linecap="round"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Center: Editorial Copy & Core Values -->
+        <div class="philosophy-content-col">
+          <div class="section-label-wrapper">
+            <span class="section-eyebrow">A LITTLE ABOUT US</span>
+            <span class="eyebrow-line"></span>
+          </div>
+
+          <h2 id="philosophy-heading" class="section-heading">
+            Not Just Coffee.<br>
+            <span class="italic-serif">A Feeling.</span>
+          </h2>
+
+          <p class="philosophy-narrative">
+            At Caffeine Cove, we believe coffee is more than a drink — it's a moment of peace, a break from the rush, and a chance to reconnect with what matters.
+          </p>
+          <p class="philosophy-narrative-sub">
+            We craft each cup with care, using thoughtfully selected beans and considered preparation, in a space that feels welcoming.
+          </p>
+
+          <button id="learn-more-btn" class="learn-more-link" aria-label="Learn more about our coffee story and beans">
+            <span>Learn More</span>
+            <svg class="link-arrow" viewBox="0 0 20 20" fill="none" stroke="currentColor">
+              <path d="M4 10h12M11 5l5 5-5 5" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+
+          <!-- 3 Supporting Values Column -->
+          <div class="values-list">
+            <div class="value-item">
+              <div class="value-icon-circle">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                  <path d="M18 8h1a4 4 0 0 1 0 8h-1M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/>
+                  <line x1="6" y1="1" x2="6" y2="4"/>
+                  <line x1="10" y1="1" x2="10" y2="4"/>
+                  <line x1="14" y1="1" x2="14" y2="4"/>
+                </svg>
+              </div>
+              <div class="value-text">
+                <h3 class="value-title">Premium Quality</h3>
+                <p class="value-description">Finest beans, crafted with care.</p>
+              </div>
+            </div>
+
+            <div class="value-item">
+              <div class="value-icon-circle">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                  <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/>
+                  <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/>
+                </svg>
+              </div>
+              <div class="value-text">
+                <h3 class="value-title">Cozy Ambience</h3>
+                <p class="value-description">A warm space for every mood.</p>
+              </div>
+            </div>
+
+            <div class="value-item">
+              <div class="value-icon-circle">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                </svg>
+              </div>
+              <div class="value-text">
+                <h3 class="value-title">A Welcoming Community</h3>
+                <p class="value-description">More than a café, a gathering place.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SECTION 9: SIGNATURE COFFEE MENU ==================== -->
+    <section class="menu-section dark-section" id="signature-menu" aria-labelledby="menu-heading">
+      <div class="container menu-container">
+        <!-- Menu Header Row (Text on Left, Craft Showcase Image on Right) -->
+        <div class="menu-header-row">
+          <div class="menu-intro-col">
+            <div class="section-label-wrapper">
+              <span class="section-eyebrow eyebrow-light">OUR SIGNATURE MENU</span>
+              <span class="eyebrow-line line-light"></span>
+            </div>
+            <h2 id="menu-heading" class="section-heading heading-light">
+              Meet Your<br>
+              <span class="italic-serif">New Favourite.</span>
+            </h2>
+            <p class="section-subtitle subtitle-light">
+              From bold espressos to creamy lattes, discover our handcrafted coffee collection.
+            </p>
+            <div class="menu-cta-wrap">
+              <button id="open-full-menu-btn" class="btn btn-caramel menu-full-btn" aria-label="View our complete digital coffee menu">
+                View Full Menu
+                <svg class="btn-arrow" viewBox="0 0 20 20" fill="none" stroke="currentColor">
+                  <path d="M4 10h12M11 5l5 5-5 5" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+              <!-- Decorative Coffee Bean Icon -->
+              <svg class="coffee-bean-accent" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+                <ellipse cx="16" cy="16" rx="12" ry="9" transform="rotate(-25 16 16)" fill="#B7835A" fill-opacity="0.3" stroke="#B7835A" stroke-width="1.5"/>
+                <path d="M9 13C12 17 20 15 23 19" stroke="#E6D6C3" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Menu Showcase Visual Column (Fills the previous blank space) -->
+          <div class="menu-showcase-col">
+            <div class="menu-showcase-card">
+              <img 
+                src="images/menu_header_showcase.jpg" 
+                alt="Artisan barista carefully pouring silky microfoam latte art into a handcrafted rustic cup with roasted coffee beans" 
+                class="menu-showcase-img"
+                loading="lazy"
+                width="640" 
+                height="360"
+              >
+              <div class="menu-showcase-overlay"></div>
+              <!-- Floating Highlight Badge -->
+              <div class="menu-showcase-badge" aria-hidden="true">
+                <span class="badge-steam-dot"></span>
+                <span class="badge-text">Artisanal Brew & Craft</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Category Filter Toolbar Row -->
+        <div class="menu-filter-toolbar">
+          <div class="menu-filter-nav" role="tablist" aria-label="Menu categories">
+            <button class="filter-pill active" role="tab" aria-selected="true" data-filter="all">All</button>
+            <button class="filter-pill" role="tab" aria-selected="false" data-filter="hot">Hot Coffee</button>
+            <button class="filter-pill" role="tab" aria-selected="false" data-filter="iced">Iced</button>
+            <button class="filter-pill" role="tab" aria-selected="false" data-filter="signature">Signature</button>
+          </div>
+          <span class="menu-filter-hint" aria-hidden="true">
+            <svg viewBox="0 0 16 16" fill="currentColor" class="sparkle-icon">
+              <path d="M8 0L9.5 6.5L16 8L9.5 9.5L8 16L6.5 9.5L0 8L6.5 6.5L8 0Z"/>
+            </svg>
+            Freshly pulled espresso & batch roasts daily
+          </span>
+        </div>
+
+        <!-- Dynamic Menu Cards Grid -->
+        <div class="menu-grid" id="menu-items-grid" aria-live="polite">
+          <!-- Item 1: Velvet Latte -->
+          <article class="menu-card" data-category="hot signature" data-item-id="velvet-latte" data-price-inr="220" data-price-usd="5.50">
+            <div class="card-image-box">
+              <img src="images/menu_velvet_latte.jpg" alt="Velvet Latte in speckled ceramic cup with intricate rosette latte art" class="card-img" loading="lazy" width="400" height="400">
+              <span class="card-badge">Signature</span>
+            </div>
+            <div class="card-content">
+              <h3 class="card-title">Velvet Latte</h3>
+              <p class="card-desc">Smooth espresso with silky steamed whole or oat milk.</p>
+              <div class="card-bottom">
+                <span class="card-price" data-base-price-inr="220" data-base-price-usd="5.50">₹220</span>
+                <button class="btn-add-item" aria-label="Customize and add Velvet Latte to tasting tray" title="Add to Tray">
+                  <svg viewBox="0 0 20 20" fill="none" stroke="currentColor">
+                    <line x1="10" y1="4" x2="10" y2="16" stroke-width="2" stroke-linecap="round"/>
+                    <line x1="4" y1="10" x2="16" y2="10" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Item 2: Caramel Cloud -->
+          <article class="menu-card" data-category="iced signature" data-item-id="caramel-cloud" data-price-inr="250" data-price-usd="5.75">
+            <div class="card-image-box">
+              <img src="images/menu_caramel_cloud.jpg" alt="Caramel Cloud iced coffee in ribbed glass with caramel drizzle and thick cold foam" class="card-img" loading="lazy" width="400" height="400">
+              <span class="card-badge">Popular</span>
+            </div>
+            <div class="card-content">
+              <h3 class="card-title">Caramel Cloud</h3>
+              <p class="card-desc">Espresso with rich caramel notes and velvety cold foam.</p>
+              <div class="card-bottom">
+                <span class="card-price" data-base-price-inr="250" data-base-price-usd="5.75">₹250</span>
+                <button class="btn-add-item" aria-label="Customize and add Caramel Cloud to tasting tray" title="Add to Tray">
+                  <svg viewBox="0 0 20 20" fill="none" stroke="currentColor">
+                    <line x1="10" y1="4" x2="10" y2="16" stroke-width="2" stroke-linecap="round"/>
+                    <line x1="4" y1="10" x2="16" y2="10" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Item 3: Spanish Latte -->
+          <article class="menu-card" data-category="iced signature" data-item-id="spanish-latte" data-price-inr="240" data-price-usd="5.75">
+            <div class="card-image-box">
+              <img src="images/menu_spanish_latte.jpg" alt="Iced Spanish Latte with layered sweetened condensed milk and dark espresso swirls" class="card-img" loading="lazy" width="400" height="400">
+              <span class="card-badge">Guest Pick</span>
+            </div>
+            <div class="card-content">
+              <h3 class="card-title">Spanish Latte</h3>
+              <p class="card-desc">Creamy, sweet, and comforting with spiced cinnamon notes.</p>
+              <div class="card-bottom">
+                <span class="card-price" data-base-price-inr="240" data-base-price-usd="5.75">₹240</span>
+                <button class="btn-add-item" aria-label="Customize and add Spanish Latte to tasting tray" title="Add to Tray">
+                  <svg viewBox="0 0 20 20" fill="none" stroke="currentColor">
+                    <line x1="10" y1="4" x2="10" y2="16" stroke-width="2" stroke-linecap="round"/>
+                    <line x1="4" y1="10" x2="16" y2="10" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Item 4: Mocha Noir -->
+          <article class="menu-card" data-category="hot signature" data-item-id="mocha-noir" data-price-inr="260" data-price-usd="6.00">
+            <div class="card-image-box">
+              <img src="images/menu_mocha_noir.jpg" alt="Mocha Noir glass mug topped with whipped cream and dusted cocoa powder" class="card-img" loading="lazy" width="400" height="400">
+              <span class="card-badge">Decadent</span>
+            </div>
+            <div class="card-content">
+              <h3 class="card-title">Mocha Noir</h3>
+              <p class="card-desc">70% single-origin chocolate meets bold double espresso.</p>
+              <div class="card-bottom">
+                <span class="card-price" data-base-price-inr="260" data-base-price-usd="6.00">₹260</span>
+                <button class="btn-add-item" aria-label="Customize and add Mocha Noir to tasting tray" title="Add to Tray">
+                  <svg viewBox="0 0 20 20" fill="none" stroke="currentColor">
+                    <line x1="10" y1="4" x2="10" y2="16" stroke-width="2" stroke-linecap="round"/>
+                    <line x1="4" y1="10" x2="16" y2="10" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Item 5: Vanilla Cold Brew -->
+          <article class="menu-card" data-category="iced" data-item-id="vanilla-cold-brew" data-price-inr="230" data-price-usd="5.50">
+            <div class="card-image-box">
+              <img src="images/menu_vanilla_cold_brew.jpg" alt="Artisanal Vanilla Cold Brew in faceted crystal glass with ice and sweet cream pour" class="card-img" loading="lazy" width="400" height="400">
+              <span class="card-badge">20hr Steep</span>
+            </div>
+            <div class="card-content">
+              <h3 class="card-title">Vanilla Cold Brew</h3>
+              <p class="card-desc">Refreshing slow-steeped coffee infused with Madagascar vanilla.</p>
+              <div class="card-bottom">
+                <span class="card-price" data-base-price-inr="230" data-base-price-usd="5.50">₹230</span>
+                <button class="btn-add-item" aria-label="Customize and add Vanilla Cold Brew to tasting tray" title="Add to Tray">
+                  <svg viewBox="0 0 20 20" fill="none" stroke="currentColor">
+                    <line x1="10" y1="4" x2="10" y2="16" stroke-width="2" stroke-linecap="round"/>
+                    <line x1="4" y1="10" x2="16" y2="10" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Item 6: Classic Cappuccino -->
+          <article class="menu-card" data-category="hot" data-item-id="classic-cappuccino" data-price-inr="210" data-price-usd="5.50">
+            <div class="card-image-box">
+              <img src="images/menu_classic_cappuccino.jpg" alt="Classic Cappuccino in charcoal ceramic cup with thick microfoam on dark wooden table" class="card-img" loading="lazy" width="400" height="400">
+              <span class="card-badge">Classic</span>
+            </div>
+            <div class="card-content">
+              <h3 class="card-title">Classic Cappuccino</h3>
+              <p class="card-desc">Espresso balanced with dense, delicate steamed milk foam.</p>
+              <div class="card-bottom">
+                <span class="card-price" data-base-price-inr="210" data-base-price-usd="5.50">₹210</span>
+                <button class="btn-add-item" aria-label="Customize and add Classic Cappuccino to tasting tray" title="Add to Tray">
+                  <svg viewBox="0 0 20 20" fill="none" stroke="currentColor">
+                    <line x1="10" y1="4" x2="10" y2="16" stroke-width="2" stroke-linecap="round"/>
+                    <line x1="4" y1="10" x2="16" y2="10" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SECTION 10: THE DARK COFFEE EXPERIENCE ==================== -->
+    <section class="cinematic-section dark-section" id="process" aria-labelledby="process-heading">
+      <div class="cinematic-backdrop">
+        <img 
+          src="images/dark_coffee_process.jpg" 
+          alt="Barista extracting specialty espresso with warm lighting in coffeehouse" 
+          class="cinematic-bg-img"
+          loading="lazy"
+          width="1400" 
+          height="700"
+        >
+        <div class="cinematic-overlay"></div>
+      </div>
+      <div class="container cinematic-container">
+        <div class="cinematic-box">
+          <div class="section-label-wrapper">
+            <span class="section-eyebrow eyebrow-light">THE ART OF EXTRACTION</span>
+            <span class="eyebrow-line line-light"></span>
+          </div>
+          <h2 id="process-heading" class="cinematic-heading">
+            GOOD COFFEE.<br>
+            <span class="italic-serif">NO RUSH.</span>
+          </h2>
+          <p class="cinematic-text">
+            We take pride in every detail, from carefully selected single-origin beans to the final pour. Because great coffee is worth slowing down for.
+          </p>
+          <div class="cinematic-actions">
+            <button id="open-process-details-btn" class="btn btn-caramel">OUR PROCESS</button>
+            <button id="open-video-btn" class="btn btn-pill-outline video-trigger-btn">
+              WATCH OUR STORY
+              <span class="play-icon-circle">
+                <svg viewBox="0 0 16 16" fill="currentColor">
+                  <path d="M5.5 3.5l7 4.5-7 4.5v-9z"/>
+                </svg>
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SECTION 11: COFFEE AND LITTLE TREATS ==================== -->
+    <section class="treats-section" id="treats" aria-labelledby="treats-heading">
+      <div class="container treats-container">
+        <!-- Treats Intro Block -->
+        <div class="treats-header-row">
+          <div class="treats-intro-col">
+            <div class="section-label-wrapper">
+              <span class="section-eyebrow">THE PERFECT PAIRING</span>
+              <span class="eyebrow-line"></span>
+            </div>
+            <h2 id="treats-heading" class="section-heading">
+              Coffee &<br>
+              <span class="italic-serif">Little Treats.</span>
+            </h2>
+            <p class="section-subtitle">
+              Pair your favourite brew with our freshly baked pastries and desserts.
+            </p>
+            <button id="open-full-pastries-btn" class="btn btn-dark-pill" aria-label="View our complete bakery and pastry selection">
+              View Full Pastries
+              <svg class="btn-arrow" viewBox="0 0 20 20" fill="none" stroke="currentColor">
+                <path d="M4 10h12M11 5l5 5-5 5" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+
+          <!-- Treats Cards Showcase Area -->
+          <div class="treats-showcase-wrapper">
+            <!-- Atmospheric Background Artwork Starting Where Pastry Images Begin -->
+            <div class="treats-showcase-backdrop" aria-hidden="true">
+              <span class="treats-backdrop-watermark">Good Things Taste Better Together</span>
+              <div class="treats-backdrop-glow"></div>
+            </div>
+
+            <!-- Treats Cards Grid -->
+            <div class="treats-cards-grid">
+              <!-- Treat 1: Butter Croissant -->
+              <article class="treat-card" data-item-id="butter-croissant" data-price-inr="180" data-price-usd="4.50">
+                <div class="treat-img-box">
+                  <img src="images/treat_croissant.jpg" alt="Freshly baked golden Butter Croissant on artisan ceramic plate" class="treat-img" loading="lazy" width="300" height="300">
+                </div>
+                <div class="treat-info">
+                  <h3 class="treat-title">Butter Croissant</h3>
+                  <p class="treat-desc">Flaky, golden French butter layers baked every morning.</p>
+                  <div class="treat-bottom">
+                    <span class="treat-price" data-base-price-inr="180" data-base-price-usd="4.50">₹180</span>
+                    <button class="btn-add-treat" aria-label="Add Butter Croissant to tasting tray" title="Add Treat">＋</button>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Treat 2: Chocolate Brownie -->
+              <article class="treat-card" data-item-id="chocolate-brownie" data-price-inr="190" data-price-usd="4.75">
+                <div class="treat-img-box">
+                  <img src="images/treat_brownie.jpg" alt="Rich dark chocolate fudge brownie square with flaky sea salt" class="treat-img" loading="lazy" width="300" height="300">
+                </div>
+                <div class="treat-info">
+                  <h3 class="treat-title">Chocolate Brownie</h3>
+                  <p class="treat-desc">Fudgy Belgian dark chocolate with sea salt flakes.</p>
+                  <div class="treat-bottom">
+                    <span class="treat-price" data-base-price-inr="190" data-base-price-usd="4.75">₹190</span>
+                    <button class="btn-add-treat" aria-label="Add Chocolate Brownie to tasting tray" title="Add Treat">＋</button>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Treat 3: Blueberry Cheesecake -->
+              <article class="treat-card" data-item-id="blueberry-cheesecake" data-price-inr="220" data-price-usd="5.50">
+                <div class="treat-img-box">
+                  <img src="images/treat_cheesecake.jpg" alt="Creamy New York style Blueberry Cheesecake slice with fresh blueberry compote" class="treat-img" loading="lazy" width="300" height="300">
+                </div>
+                <div class="treat-info">
+                  <h3 class="treat-title">Blueberry Cheesecake</h3>
+                  <p class="treat-desc">Velvety classic cheesecake with glossy wild berry compote.</p>
+                  <div class="treat-bottom">
+                    <span class="treat-price" data-base-price-inr="220" data-base-price-usd="5.50">₹220</span>
+                    <button class="btn-add-treat" aria-label="Add Blueberry Cheesecake to tasting tray" title="Add Treat">＋</button>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Treat 4: Almond Pastry -->
+              <article class="treat-card" data-item-id="almond-pastry" data-price-inr="190" data-price-usd="4.75">
+                <div class="treat-img-box">
+                  <img src="images/treat_almond_pastry.jpg" alt="French Almond Pastry loaded with crunchy sliced toasted almonds" class="treat-img" loading="lazy" width="300" height="300">
+                </div>
+                <div class="treat-info">
+                  <h3 class="treat-title">Almond Pastry</h3>
+                  <p class="treat-desc">Crisp pastry filled with sweet frangipane &amp; toasted almonds.</p>
+                  <div class="treat-bottom">
+                    <span class="treat-price" data-base-price-inr="190" data-base-price-usd="4.75">₹190</span>
+                    <button class="btn-add-treat" aria-label="Add Almond Pastry to tasting tray" title="Add Treat">＋</button>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Open Background Typographic Accent (Directly on canvas, no box) -->
+              <div class="treats-bg-quote-area" aria-hidden="true">
+                <div class="treats-bg-quote-content">
+                  <!-- Subtle coffee ring watermark in background of empty space -->
+                  <div class="treats-quote-watermark-ring">
+                    <svg viewBox="0 0 200 200" fill="none">
+                      <circle cx="100" cy="100" r="82" stroke="#B7835A" stroke-opacity="0.14" stroke-width="5" stroke-dasharray="14 10 32 14 55 18"/>
+                      <circle cx="100" cy="100" r="76" stroke="#B7835A" stroke-opacity="0.08" stroke-width="1.8"/>
+                    </svg>
+                  </div>
+
+                  <div class="treats-quote-kicker">
+                    <span class="kicker-line"></span>
+                    <span class="kicker-text">ARTISAN HARVEST</span>
+                    <span class="kicker-line"></span>
+                  </div>
+                  <h3 class="treats-cursive-display">
+                    Good Things<br>
+                    <span class="cursive-highlight">Taste Better</span><br>
+                    Together
+                  </h3>
+                  <p class="treats-quote-subtext">
+                    Golden laminations, Belgian chocolate &amp; slow-churned butter — made fresh every morning to elevate every warm sip.
+                  </p>
+                  <div class="treats-quote-botanical-wrap">
+                    <svg class="treats-botanical-sprig" viewBox="0 0 120 40" fill="none">
+                      <path d="M10 20 C 40 20, 70 8, 110 20" stroke="#B7835A" stroke-width="1.2" stroke-linecap="round"/>
+                      <path d="M40 20 C 48 10, 60 14, 52 22 C 45 28, 40 24, 40 20 Z" fill="rgba(133, 134, 109, 0.35)"/>
+                      <path d="M75 16 C 85 8, 95 12, 88 20 C 82 25, 76 21, 75 16 Z" fill="rgba(183, 131, 90, 0.35)"/>
+                      <circle cx="110" cy="20" r="2.5" fill="#B7835A"/>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SECTION 12: INSIDE THE COVE — GALLERY ==================== -->
+    <section class="gallery-section dark-section" id="gallery" aria-labelledby="gallery-heading">
+      <div class="container gallery-container">
+        <!-- Modern Gallery Header Row (Full-width, editorial, balanced) -->
+        <div class="gallery-header-row">
+          <div class="gallery-header-left">
+            <div class="section-label-wrapper">
+              <span class="section-eyebrow eyebrow-light">INSIDE THE COVE</span>
+              <span class="eyebrow-line line-light"></span>
+            </div>
+            <h2 id="gallery-heading" class="section-heading heading-light">
+              Atmosphere &amp; <span class="italic-serif">Craft.</span>
+            </h2>
+            <p class="section-subtitle subtitle-light">
+              A quiet visual journal of morning extractions, flour-dusted hearths, and slow-crafted moments.
+            </p>
+          </div>
+
+          <div class="gallery-header-actions">
+            <!-- Filter Pills -->
+            <div class="gallery-filter-tabs" role="tablist" aria-label="Gallery category filters">
+              <button class="gallery-tab-btn active" data-filter="all" role="tab" aria-selected="true">
+                <span class="tab-dot">✦</span> All Moments
+              </button>
+              <button class="gallery-tab-btn" data-filter="craft" role="tab" aria-selected="false">
+                Craft &amp; Pour
+              </button>
+              <button class="gallery-tab-btn" data-filter="space" role="tab" aria-selected="false">
+                The Space
+              </button>
+              <button class="gallery-tab-btn" data-filter="hearth" role="tab" aria-selected="false">
+                Daily Hearth
+              </button>
+            </div>
+
+            <button id="open-full-gallery-btn" class="btn btn-pill-outline gallery-view-btn" aria-label="Open photo gallery viewer">
+              <span>View Fullscreen (5)</span>
+              <svg class="btn-arrow" viewBox="0 0 20 20" fill="none" stroke="currentColor">
+                <path d="M4 10h12M11 5l5 5-5 5" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Modern Bento Showcase Grid (Full-width 3-column asymmetric layout) -->
+        <div class="gallery-bento-grid" role="region" aria-label="Curated cafe photo gallery">
+          
+          <!-- Tile 1: Hero Cinematic Extraction (Row 1, Span 2 Cols) -->
+          <article class="gallery-tile tile-bento-hero" data-gallery-index="0" data-category="craft" tabindex="0" role="button" aria-label="View photo: Golden Crema Pour">
+            <div class="tile-img-container">
+              <img src="images/gallery_espresso.jpg" alt="Rich golden espresso extraction flowing into glass" class="mosaic-img" loading="lazy" width="800" height="450">
+            </div>
+            <div class="tile-tag-pill">
+              <span class="tag-pulse"></span>
+              <span>01 • SIGNATURE EXTRACTION</span>
+            </div>
+            <div class="tile-glass-info">
+              <div class="tile-text-group">
+                <h3 class="tile-title">Golden Crema Pour</h3>
+                <p class="tile-desc">Single-origin Ethiopian Yirgacheffe pulled at 9 bars on our custom lever machine.</p>
+              </div>
+              <div class="tile-action-badge" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+            </div>
+          </article>
+
+          <!-- Tile 2: Afternoon Reading Nook (Row 1, Span 1 Col) -->
+          <article class="gallery-tile tile-bento-card" data-gallery-index="1" data-category="space" tabindex="0" role="button" aria-label="View photo: Afternoon Reading Nook">
+            <div class="tile-img-container">
+              <img src="images/gallery_cozy_nook.jpg" alt="Warm wooden window nook with books and coffee mug" class="mosaic-img" loading="lazy" width="400" height="450">
+            </div>
+            <div class="tile-tag-pill">
+              <span>02 • THE NOOK</span>
+            </div>
+            <div class="tile-glass-info">
+              <div class="tile-text-group">
+                <h3 class="tile-title">Afternoon Reading Nook</h3>
+                <p class="tile-desc">Natural daylight, quiet oak corners &amp; gentle vinyl hum.</p>
+              </div>
+              <div class="tile-action-badge" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+            </div>
+          </article>
+
+          <!-- Tile 3: Top-Down Latte Art (Row 2, Span 1 Col) -->
+          <article class="gallery-tile tile-bento-card" data-gallery-index="2" data-category="craft" tabindex="0" role="button" aria-label="View photo: Artisanal Pour">
+            <div class="tile-img-container">
+              <img src="images/gallery_latte_overhead.jpg" alt="Overhead flat lay of latte art in ceramic cup on saucer" class="mosaic-img" loading="lazy" width="400" height="380">
+            </div>
+            <div class="tile-tag-pill">
+              <span>03 • MICROFOAM CRAFT</span>
+            </div>
+            <div class="tile-glass-info">
+              <div class="tile-text-group">
+                <h3 class="tile-title">Artisanal Pour</h3>
+                <p class="tile-desc">Silky oat microfoam hand-poured in custom earthenware.</p>
+              </div>
+              <div class="tile-action-badge" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+            </div>
+          </article>
+
+          <!-- Tile 4: Daily Hearth Bake (Row 2, Span 1 Col) -->
+          <article class="gallery-tile tile-bento-card" data-gallery-index="3" data-category="hearth" tabindex="0" role="button" aria-label="View photo: Daily Hearth Bake">
+            <div class="tile-img-container">
+              <img src="images/gallery_pastries.jpg" alt="Fresh golden croissants and artisan pastries displayed in cafe" class="mosaic-img" loading="lazy" width="400" height="380">
+            </div>
+            <div class="tile-tag-pill">
+              <span>04 • HEARTH BAKE</span>
+            </div>
+            <div class="tile-glass-info">
+              <div class="tile-text-group">
+                <h3 class="tile-title">Daily Hearth Bake</h3>
+                <p class="tile-desc">Laminated Normandy butter layers baked fresh every morning.</p>
+              </div>
+              <div class="tile-action-badge" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+            </div>
+          </article>
+
+          <!-- Tile 5: Fresh Roasted Coffee Beans (Row 2, Span 1 Col) -->
+          <article class="gallery-tile tile-bento-card" data-gallery-index="4" data-category="hearth" tabindex="0" role="button" aria-label="View photo: Single-Origin Roast">
+            <div class="tile-img-container">
+              <img src="images/gallery_coffee_beans.jpg" alt="Glossy roasted specialty Arabica coffee beans" class="mosaic-img" loading="lazy" width="400" height="380">
+            </div>
+            <div class="tile-tag-pill">
+              <span>05 • ROASTERY</span>
+            </div>
+            <div class="tile-glass-info">
+              <div class="tile-text-group">
+                <h3 class="tile-title">Single-Origin Roast</h3>
+                <p class="tile-desc">Shade-grown specialty Arabica beans, roasted in small batches.</p>
+              </div>
+              <div class="tile-action-badge" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+        <!-- Modern Gallery Footer Strip -->
+        <div class="gallery-footer-strip">
+          <div class="gallery-meta-note">
+            <span class="meta-dot"></span>
+            <span>All moments captured on 35mm film &amp; Leica Q2 by the Caffeine Cove team.</span>
+          </div>
+          <div class="gallery-social-tag">
+            <span class="tag-hash">#CaffeineCoveMoments</span>
+            <span class="tag-divider">•</span>
+            <span class="tag-handle">@caffeinecove</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== SECTION 13: CUSTOMER REVIEWS ==================== -->
+    <section class="reviews-section dark-section" id="reviews" aria-labelledby="reviews-heading">
+      <div class="container reviews-container">
+        <div class="reviews-header">
+          <div class="section-label-wrapper">
+            <span class="section-eyebrow eyebrow-light">A NOTE FROM OUR GUESTS</span>
+            <span class="eyebrow-line line-light"></span>
+          </div>
+          <h2 id="reviews-heading" class="section-heading heading-light">
+            What Our Guests Say
+          </h2>
+          <p class="review-demonstration-badge">Illustrative guest experiences</p>
+        </div>
+
+        <!-- Accessible Testimonial Carousel -->
+        <div class="reviews-carousel-wrapper" role="region" aria-roledescription="carousel" aria-label="Guest reviews">
+          <!-- Navigation Arrows -->
+          <button id="carousel-prev-btn" class="carousel-nav-btn prev-btn" aria-label="Previous review">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M15 18l-6-6 6-6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+
+          <!-- Slides Container -->
+          <div class="reviews-viewport" id="reviews-viewport">
+            <div class="reviews-track" id="reviews-track">
+              <!-- Slide 1 -->
+              <div class="review-slide active" role="group" aria-roledescription="slide" aria-label="1 of 3">
+                <blockquote class="review-quote">
+                  “Caffeine Cove is my happy place. The coffee is amazing, the ambience is perfect, and every visit feels like a little escape.”
+                </blockquote>
+                <div class="reviewer-meta">
+                  <div class="reviewer-avatar">
+                    <img src="images/reviewer_sarah.jpg" alt="Sarah Khan profile photo" class="avatar-img" width="56" height="56">
+                  </div>
+                  <div class="reviewer-info">
+                    <cite class="reviewer-name">Sarah Khan</cite>
+                    <span class="reviewer-title">Regular Guest</span>
+                  </div>
+                  <div class="reviewer-stars" aria-label="Rating: 5 out of 5 stars">
+                    <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Slide 2 -->
+              <div class="review-slide" role="group" aria-roledescription="slide" aria-label="2 of 3">
+                <blockquote class="review-quote">
+                  “The Spanish Latte and flaky butter croissants are incomparable. Their cozy window nook is where I finish all my morning writing.”
+                </blockquote>
+                <div class="reviewer-meta">
+                  <div class="reviewer-avatar">
+                    <img src="images/reviewer_marcus.jpg" alt="Marcus Vance profile photo" class="avatar-img" width="56" height="56">
+                  </div>
+                  <div class="reviewer-info">
+                    <cite class="reviewer-name">Marcus Vance</cite>
+                    <span class="reviewer-title">Author & Coffee Lover</span>
+                  </div>
+                  <div class="reviewer-stars" aria-label="Rating: 5 out of 5 stars">
+                    <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Slide 3 -->
+              <div class="review-slide" role="group" aria-roledescription="slide" aria-label="3 of 3">
+                <blockquote class="review-quote">
+                  “Baristas who genuinely care about bean origin and brew ratios. You taste the dedication and craft in every single pour.”
+                </blockquote>
+                <div class="reviewer-meta">
+                  <div class="reviewer-avatar">
+                    <img src="images/reviewer_elena.jpg" alt="Elena Rostova profile photo" class="avatar-img" width="56" height="56">
+                  </div>
+                  <div class="reviewer-info">
+                    <cite class="reviewer-name">Elena Rostova</cite>
+                    <span class="reviewer-title">Specialty Roaster</span>
+                  </div>
+                  <div class="reviewer-stars" aria-label="Rating: 5 out of 5 stars">
+                    <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <button id="carousel-next-btn" class="carousel-nav-btn next-btn" aria-label="Next review">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M9 18l6-6-6-6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Carousel Indicators -->
+        <div class="carousel-dots" id="carousel-dots" role="tablist" aria-label="Review slide indicators">
+          <button class="dot-btn active" role="tab" aria-selected="true" aria-label="Go to slide 1"></button>
+          <button class="dot-btn" role="tab" aria-selected="false" aria-label="Go to slide 2"></button>
+          <button class="dot-btn" role="tab" aria-selected="false" aria-label="Go to slide 3"></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SECTION 14 & 15: VISIT THE COVE & TABLE RESERVATION ==================== -->
+    <section class="visit-section" id="visit" aria-labelledby="visit-heading">
+      <div class="container visit-container">
+        <!-- Left: Café Storefront Exterior Photo -->
+        <div class="visit-facade-col">
+          <div class="facade-card">
+            <img 
+              src="images/cafe_exterior_facade.jpg" 
+              alt="Exterior view of Caffeine Cove coffee shop with warm lantern lights, outdoor patio tables, and awning" 
+              class="facade-img"
+              loading="lazy"
+              width="600" 
+              height="700"
+            >
+            <div class="facade-tag">
+              <span class="tag-pulse"></span>
+              Open Today Until 11:00 PM
+            </div>
+          </div>
+        </div>
+
+        <!-- Middle: Contact & Location Information -->
+        <div class="visit-info-col">
+          <div class="section-label-wrapper">
+            <span class="section-eyebrow">VISIT THE COVE</span>
+            <span class="eyebrow-line"></span>
+          </div>
+
+          <h2 id="visit-heading" class="section-heading">
+            Find Us &<br>
+            <span class="italic-serif">Plan Your Visit</span>
+          </h2>
+
+          <div class="visit-details-list">
+            <!-- Address -->
+            <div class="visit-detail-item">
+              <div class="detail-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                  <circle cx="12" cy="10" r="3"/>
+                </svg>
+              </div>
+              <div class="detail-content">
+                <span class="detail-label">Address</span>
+                <p class="detail-value">123 Coffee Lane, Dream City, DC 12345</p>
+                <span class="demo-badge">Sample Location</span>
+              </div>
+            </div>
+
+            <!-- Opening Hours -->
+            <div class="visit-detail-item">
+              <div class="detail-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <circle cx="12" cy="12" r="10"/>
+                  <polyline points="12 6 12 12 16 14"/>
+                </svg>
+              </div>
+              <div class="detail-content">
+                <span class="detail-label">Opening Hours</span>
+                <p class="detail-value">Mon – Sun : 8:00 AM – 11:00 PM</p>
+                <span class="detail-sub">Fresh breakfast bake begins at 7:30 AM</span>
+              </div>
+            </div>
+
+            <!-- Telephone -->
+            <div class="visit-detail-item">
+              <div class="detail-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                </svg>
+              </div>
+              <div class="detail-content">
+                <span class="detail-label">Phone</span>
+                <a href="tel:+919876543210" class="detail-link">+91 98765 43210</a>
+              </div>
+            </div>
+
+            <!-- Instagram -->
+            <div class="visit-detail-item">
+              <div class="detail-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                </svg>
+              </div>
+              <div class="detail-content">
+                <span class="detail-label">Instagram</span>
+                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="detail-link">@caffeinecove</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="visit-actions">
+            <button id="get-directions-btn" class="btn btn-latte" aria-label="Open directions and map guide">
+              Get Directions
+              <svg class="btn-arrow" viewBox="0 0 20 20" fill="none" stroke="currentColor">
+                <path d="M4 10h12M11 5l5 5-5 5" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+
+          <!-- Subtle Olive Branch Botanical SVG -->
+          <div class="visit-botanical-accent" aria-hidden="true">
+            <svg viewBox="0 0 100 120" fill="none">
+              <path d="M20 110C35 80 55 50 85 20" stroke="#85866D" stroke-width="1.4" stroke-linecap="round"/>
+              <path d="M40 70C25 65 20 50 28 42C38 35 48 55 40 70Z" fill="#85866D" fill-opacity="0.25" stroke="#85866D" stroke-width="0.8"/>
+              <path d="M60 45C72 35 85 45 78 55C68 65 52 52 60 45Z" fill="#85866D" fill-opacity="0.25" stroke="#85866D" stroke-width="0.8"/>
+              <circle cx="50" cy="58" r="3" fill="#85866D" fill-opacity="0.5"/>
+              <circle cx="68" cy="38" r="3" fill="#85866D" fill-opacity="0.5"/>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Right: Table Reservation Experience Card -->
+        <div class="reservation-card-col" id="reservation-box">
+          <div class="reservation-card">
+            <!-- Decorative Coffee Stain Watermark -->
+            <div class="coffee-stain-watermark" aria-hidden="true">
+              <svg viewBox="0 0 160 160" fill="none">
+                <ellipse cx="80" cy="80" rx="65" ry="63" stroke="#B7835A" stroke-width="5" stroke-opacity="0.12" stroke-dasharray="10 4 2 5"/>
+                <ellipse cx="82" cy="78" rx="55" ry="53" stroke="#B7835A" stroke-width="2" stroke-opacity="0.08"/>
+                <circle cx="130" cy="95" r="4" fill="#B7835A" fill-opacity="0.1"/>
+                <circle cx="45" cy="120" r="2.5" fill="#B7835A" fill-opacity="0.08"/>
+              </svg>
+            </div>
+
+            <div class="reservation-header">
+              <h3 class="reservation-title">Reserve a Table</h3>
+              <p class="reservation-subtitle">Book your favourite spot at Caffeine Cove.</p>
+            </div>
+
+            <!-- Validation Error Summary Box -->
+            <div id="reservation-errors" class="form-errors-box" role="alert" aria-live="assertive" hidden></div>
+
+            <!-- Reservation Form -->
+            <form id="reservation-form" class="reservation-form" novalidate>
+              <div class="form-grid">
+                <!-- Name -->
+                <div class="form-group">
+                  <label for="res-name" class="form-label">Full Name <span class="required">*</span></label>
+                  <input type="text" id="res-name" name="name" class="form-input" placeholder="e.g. Sarah Jenkins" required autocomplete="name">
+                  <span class="field-error" id="err-name" aria-live="polite"></span>
+                </div>
+
+                <!-- Date -->
+                <div class="form-group">
+                  <label for="res-date" class="form-label">Date <span class="required">*</span></label>
+                  <input type="date" id="res-date" name="date" class="form-input" required>
+                  <span class="field-error" id="err-date" aria-live="polite"></span>
+                </div>
+
+                <!-- Time -->
+                <div class="form-group">
+                  <label for="res-time" class="form-label">Preferred Time <span class="required">*</span></label>
+                  <select id="res-time" name="time" class="form-select" required>
+                    <optgroup label="Morning">
+                      <option value="08:30 AM">08:30 AM (Breakfast & Brew)</option>
+                      <option value="09:30 AM">09:30 AM</option>
+                      <option value="10:30 AM">10:30 AM</option>
+                      <option value="11:30 AM">11:30 AM</option>
+                    </optgroup>
+                    <optgroup label="Afternoon">
+                      <option value="01:00 PM">01:00 PM (Lunch Pairing)</option>
+                      <option value="02:30 PM">02:30 PM</option>
+                      <option value="04:00 PM" selected>04:00 PM (Afternoon Coffee & Pastry)</option>
+                      <option value="05:30 PM">05:30 PM</option>
+                    </optgroup>
+                    <optgroup label="Evening">
+                      <option value="07:00 PM">07:00 PM (Acoustic Evening)</option>
+                      <option value="08:30 PM">08:30 PM</option>
+                      <option value="09:30 PM">09:30 PM</option>
+                    </optgroup>
+                  </select>
+                  <span class="field-error" id="err-time" aria-live="polite"></span>
+                </div>
+
+                <!-- Phone -->
+                <div class="form-group">
+                  <label for="res-phone" class="form-label">Phone Number <span class="required">*</span></label>
+                  <input type="tel" id="res-phone" name="phone" class="form-input" placeholder="e.g. +91 98765 43210" required autocomplete="tel">
+                  <span class="field-error" id="err-phone" aria-live="polite"></span>
+                </div>
+
+                <!-- Email -->
+                <div class="form-group">
+                  <label for="res-email" class="form-label">Email Address <span class="required">*</span></label>
+                  <input type="email" id="res-email" name="email" class="form-input" placeholder="e.g. sarah@example.com" required autocomplete="email">
+                  <span class="field-error" id="err-email" aria-live="polite"></span>
+                </div>
+
+                <!-- Guests -->
+                <div class="form-group">
+                  <label for="res-guests" class="form-label">Number of Guests <span class="required">*</span></label>
+                  <select id="res-guests" name="guests" class="form-select" required>
+                    <option value="1">1 Guest (Cozy Solo Corner)</option>
+                    <option value="2" selected>2 Guests (Table for Two)</option>
+                    <option value="3">3 Guests</option>
+                    <option value="4">4 Guests (Window Booth)</option>
+                    <option value="5">5 Guests</option>
+                    <option value="6">6 Guests (Bistro Table)</option>
+                    <option value="7">7 Guests</option>
+                    <option value="8+">8+ Guests (Private Cove Gathering)</option>
+                  </select>
+                  <span class="field-error" id="err-guests" aria-live="polite"></span>
+                </div>
+              </div>
+
+              <!-- Special Requests (Optional) -->
+              <div class="form-group full-width">
+                <label for="res-notes" class="form-label">Special Requests (Optional)</label>
+                <textarea id="res-notes" name="notes" class="form-textarea" rows="2" placeholder="Window seating, dietary preferences, celebratory anniversary, quiet work corner..."></textarea>
+              </div>
+
+              <!-- Submit Button -->
+              <div class="form-submit-wrap">
+                <button type="submit" id="res-submit-btn" class="btn btn-dark-full">
+                  <span class="btn-text">Reserve Now</span>
+                  <span class="btn-loader" hidden>
+                    <svg class="spinner-svg" viewBox="0 0 24 24">
+                      <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3" fill="none" stroke-dasharray="30 10"/>
+                    </svg>
+                  </span>
+                  <svg class="btn-arrow" viewBox="0 0 20 20" fill="none" stroke="currentColor">
+                    <path d="M4 10h12M11 5l5 5-5 5" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </button>
+              </div>
+
+              <div class="reservation-footer-note">
+                <small>🔒 Instant demo booking with booking voucher. Ready for Resy / OpenTable API integration.</small>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==================== SECTION 16: FOOTER ==================== -->
+  <footer class="site-footer dark-section" id="footer" aria-labelledby="footer-heading">
+    <div class="container footer-container">
+      <div class="footer-top-row">
+        <!-- Footer Brand Column -->
+        <div class="footer-brand-col">
+          <a href="#hero" class="brand-logo footer-logo" aria-label="Caffeine Cove Home">
+            <svg class="logo-icon footer-logo-icon" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+              <circle cx="20" cy="20" r="18" stroke="#B7835A" stroke-width="1.2" stroke-dasharray="2 2"/>
+              <path d="M15 11C14.5 9 15.5 8 16 7" stroke="#B7835A" stroke-width="1.2" stroke-linecap="round"/>
+              <path d="M20 10C19.5 8 20.5 7 21 5.5" stroke="#E6D6C3" stroke-width="1.2" stroke-linecap="round"/>
+              <path d="M25 11C24.5 9 25.5 8 26 7" stroke="#B7835A" stroke-width="1.2" stroke-linecap="round"/>
+              <path d="M11 15H29V23C29 27.5 25 30 20 30C15 30 11 27.5 11 23V15Z" fill="#302019" stroke="#E6D6C3" stroke-width="1.5"/>
+              <path d="M29 17H31.5C33 17 34 18 34 19.5C34 21 33 22 31.5 22H29" stroke="#E6D6C3" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M14 21C16.5 23 19 20 21.5 21C24 22 25.5 21 26 20" stroke="#B7835A" stroke-width="1" stroke-linecap="round"/>
+              <path d="M8 31C13 33.5 27 33.5 32 31" stroke="#B7835A" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+            <div class="brand-text">
+              <span class="brand-name">CAFFEINE COVE</span>
+              <span class="brand-tagline">Your Little Escape.</span>
+            </div>
+          </a>
+          <p class="footer-brand-phrase">Coffee · Comfort · Connection.</p>
+          <p class="footer-desc">
+            A welcoming neighborhood sanctuary for specialty coffee lovers, bookworms, and friendly conversations.
+          </p>
+        </div>
+
+        <!-- Footer Navigation Links -->
+        <div class="footer-nav-col">
+          <h4 class="footer-col-title">Navigation</h4>
+          <ul class="footer-nav-list">
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#signature-menu">Signature Menu</a></li>
+            <li><a href="#philosophy">Our Story & Craft</a></li>
+            <li><a href="#treats">Bakery & Treats</a></li>
+            <li><a href="#gallery">Cove Gallery</a></li>
+            <li><a href="#reviews">Guest Reviews</a></li>
+            <li><a href="#visit">Visit Us</a></li>
+          </ul>
+        </div>
+
+        <!-- Footer Hours & Visit -->
+        <div class="footer-hours-col">
+          <h4 class="footer-col-title">Hours & Location</h4>
+          <p class="footer-info-line"><strong>Monday – Sunday:</strong><br>8:00 AM – 11:00 PM</p>
+          <p class="footer-info-line"><strong>Location:</strong><br>123 Coffee Lane, Dream City, DC 12345</p>
+          <p class="footer-info-line"><strong>Reservations & Enquiries:</strong><br><a href="tel:+919876543210">+91 98765 43210</a></p>
+        </div>
+
+        <!-- Footer Social & Handwritten Sign-off -->
+        <div class="footer-social-col">
+          <h4 class="footer-col-title">Follow Along</h4>
+          <div class="social-links-row">
+            <a href="https://instagram.com" class="social-btn" aria-label="Follow Caffeine Cove on Instagram" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+              </svg>
+            </a>
+            <a href="https://facebook.com" class="social-btn" aria-label="Follow Caffeine Cove on Facebook" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+              </svg>
+            </a>
+            <a href="https://pinterest.com" class="social-btn" aria-label="Follow Caffeine Cove on Pinterest" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738.098.119.112.224.083.345-.09.375-.293 1.199-.334 1.364-.055.225-.179.273-.413.164-1.544-.72-2.509-2.977-2.509-4.792 0-3.901 2.834-7.485 8.175-7.485 4.292 0 7.627 3.059 7.627 7.146 0 4.264-2.688 7.697-6.419 7.697-1.254 0-2.433-.652-2.836-1.423l-.771 2.942c-.28 1.077-1.037 2.427-1.545 3.254 1.144.354 2.359.546 3.619.546 6.627 0 12-5.373 12-12S18.627 0 12 0z"/>
+              </svg>
+            </a>
+            <a href="https://youtube.com" class="social-btn" aria-label="Watch Caffeine Cove on YouTube" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19.1c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.43z"/>
+                <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/>
+              </svg>
+            </a>
+          </div>
+
+          <!-- Cursive sign-off -->
+          <div class="footer-cursive-signoff" aria-hidden="true">
+            <span class="cursive-signoff-text">Take a little comfort with you. ♡</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer Bottom Copyright & Policies -->
+      <div class="footer-bottom-row">
+        <p class="footer-copy">© 2025 Caffeine Cove. All rights reserved.</p>
+        <div class="footer-legal-links">
+          <button id="open-privacy-btn" class="footer-link-btn">Privacy Policy</button>
+          <span class="sep">•</span>
+          <button id="open-terms-btn" class="footer-link-btn">Terms of Service</button>
+          <span class="sep">•</span>
+          <button id="open-client-notes-btn" class="footer-link-btn">Client Handover Notes</button>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================== INTERACTIVE MODALS & DRAWERS ==================== -->
+
+  <!-- 1. LIGHTBOX MODAL (For Gallery) -->
+  <div id="lightbox-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-label="Image Lightbox" hidden>
+    <div class="lightbox-dialog">
+      <button id="lightbox-close-btn" class="modal-close-btn" aria-label="Close Lightbox (Esc)">✕</button>
+      <button id="lightbox-prev-btn" class="lightbox-nav-btn prev" aria-label="Previous image">‹</button>
+      <div class="lightbox-content">
+        <img id="lightbox-img" src="" alt="" class="lightbox-image">
+        <div class="lightbox-caption-box">
+          <span id="lightbox-title" class="lightbox-title"></span>
+          <span id="lightbox-counter" class="lightbox-counter">1 of 5</span>
+        </div>
+      </div>
+      <button id="lightbox-next-btn" class="lightbox-nav-btn next" aria-label="Next image">›</button>
+    </div>
+  </div>
+
+  <!-- 2. TASTING TRAY / ORDER DRAWER -->
+  <aside id="tasting-tray-drawer" class="tray-drawer" role="dialog" aria-modal="true" aria-label="Tasting Tray Drawer" aria-hidden="true">
+    <div class="tray-drawer-header">
+      <div class="tray-header-title">
+        <span class="tray-icon">☕</span>
+        <h3 class="drawer-title">Your Tasting Tray</h3>
+      </div>
+      <button id="tray-close-btn" class="drawer-close-btn" aria-label="Close tasting tray">✕</button>
+    </div>
+
+    <div class="tray-drawer-body" id="tray-items-container">
+      <!-- Empty state injected if 0 items -->
+      <div class="tray-empty-state" id="tray-empty-state">
+        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M38 16h2a6 6 0 0 1 0 12h-2M6 16h32v18a6 6 0 0 1-6 6H12a6 6 0 0 1-6-6V16z"/>
+          <line x1="14" y1="6" x2="14" y2="10"/>
+          <line x1="22" y1="6" x2="22" y2="10"/>
+          <line x1="30" y1="6" x2="30" y2="10"/>
+        </svg>
+        <p>Your tray is currently empty.</p>
+        <small>Select any coffee or fresh bake with the (＋) button to build your café tasting pairing.</small>
+      </div>
+      <ul class="tray-items-list" id="tray-items-list"></ul>
+    </div>
+
+    <div class="tray-drawer-footer">
+      <div class="tray-summary-row">
+        <span>Estimated Subtotal:</span>
+        <span class="tray-total-price" id="tray-total-price">₹0</span>
+      </div>
+      <p class="tray-note">Ready for table delivery during your visit or counter pick-up.</p>
+      <button id="tray-checkout-btn" class="btn btn-caramel-full">Confirm Tray Tasting (Demo)</button>
+    </div>
+  </aside>
+  <div id="tray-backdrop" class="drawer-backdrop" aria-hidden="true"></div>
+
+  <!-- 3. DRINK CUSTOMIZATION MODAL (When clicking + on menu cards) -->
+  <div id="item-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-label="Customize item" hidden>
+    <div class="modal-card">
+      <button id="item-modal-close" class="modal-close-btn" aria-label="Close item customizer">✕</button>
+      <div class="modal-item-layout">
+        <div class="modal-item-img-wrap">
+          <img id="custom-modal-img" src="" alt="" class="modal-item-img">
+        </div>
+        <div class="modal-item-details">
+          <h3 id="custom-modal-title" class="custom-title">Velvet Latte</h3>
+          <p id="custom-modal-desc" class="custom-desc">Smooth espresso with silky steamed milk.</p>
+          <div class="custom-price" id="custom-modal-price">₹220</div>
+
+          <!-- Customization Options -->
+          <div class="custom-options-group" id="beverage-options">
+            <div class="option-block">
+              <label class="option-label">Milk Preference:</label>
+              <div class="radio-pill-group">
+                <label class="radio-pill"><input type="radio" name="milk" value="Whole Milk" checked><span>Whole Milk</span></label>
+                <label class="radio-pill"><input type="radio" name="milk" value="Oat Milk (+₹30)"><span>Oat Milk (+₹30)</span></label>
+                <label class="radio-pill"><input type="radio" name="milk" value="Almond Milk (+₹30)"><span>Almond (+₹30)</span></label>
+              </div>
+            </div>
+
+            <div class="option-block">
+              <label class="option-label">Sweetness:</label>
+              <div class="radio-pill-group">
+                <label class="radio-pill"><input type="radio" name="sweetness" value="Unsweetened"><span>Unsweetened</span></label>
+                <label class="radio-pill"><input type="radio" name="sweetness" value="Standard" checked><span>Standard</span></label>
+                <label class="radio-pill"><input type="radio" name="sweetness" value="Caramel Kiss"><span>Extra Sweet</span></label>
+              </div>
+            </div>
+
+            <div class="option-block">
+              <label class="option-label">Temperature / Ice:</label>
+              <div class="radio-pill-group">
+                <label class="radio-pill"><input type="radio" name="temp" value="Served Warm" checked><span>Warm / Hot</span></label>
+                <label class="radio-pill"><input type="radio" name="temp" value="Iced Over Rocks"><span>Iced Over Rocks</span></label>
+              </div>
+            </div>
+          </div>
+
+          <div class="modal-add-action">
+            <button id="confirm-add-tray-btn" class="btn btn-caramel-full">Add to Tasting Tray</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. RESERVATION CONFIRMATION MODAL -->
+  <div id="booking-confirmation-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-label="Reservation Confirmed" hidden>
+    <div class="modal-card booking-voucher-card">
+      <button id="booking-modal-close" class="modal-close-btn" aria-label="Close booking modal">✕</button>
+      <div class="voucher-header">
+        <span class="voucher-success-icon">✓</span>
+        <h3 class="voucher-title">Table Requested at Caffeine Cove</h3>
+        <p class="voucher-sub">Your table enquiry has been received and verified.</p>
+        <span class="voucher-badge" id="voucher-ref">REF: #CC-8492</span>
+      </div>
+      <div class="voucher-details-grid">
+        <div class="v-row"><span class="v-label">Name:</span><span class="v-val" id="v-name">Sarah Jenkins</span></div>
+        <div class="v-row"><span class="v-label">Date:</span><span class="v-val" id="v-date">Tomorrow</span></div>
+        <div class="v-row"><span class="v-label">Time:</span><span class="v-val" id="v-time">04:00 PM</span></div>
+        <div class="v-row"><span class="v-label">Party Size:</span><span class="v-val" id="v-guests">2 Guests</span></div>
+        <div class="v-row"><span class="v-label">Phone:</span><span class="v-val" id="v-phone">+91 98765 43210</span></div>
+        <div class="v-row"><span class="v-label">Email:</span><span class="v-val" id="v-email">sarah@example.com</span></div>
+        <div class="v-row full" id="v-notes-row"><span class="v-label">Special Requests:</span><span class="v-val" id="v-notes">Window seat</span></div>
+      </div>
+      <div class="voucher-production-note">
+        <strong>Client Handover Note:</strong> This is a demonstration reservation workflow. For production, connect this form handler in <code>script.js</code> to your Resy, OpenTable, SevenRooms, or email webhook endpoint.
+      </div>
+      <div class="voucher-actions">
+        <button id="print-voucher-btn" class="btn btn-pill-outline">Print Voucher</button>
+        <button id="close-voucher-btn" class="btn btn-caramel">Done</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. OUR STORY / VIDEO MODAL -->
+  <div id="video-story-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-label="Caffeine Cove Video Story" hidden>
+    <div class="modal-card video-card">
+      <button id="video-modal-close" class="modal-close-btn" aria-label="Close video story">✕</button>
+      <div class="video-container">
+        <div class="video-mockup-wrapper">
+          <!-- Ambient coffee video player simulation -->
+          <div class="video-player-box">
+            <img src="images/dark_coffee_process.jpg" alt="Barista pulling espresso shot" class="video-still-img">
+            <div class="video-play-overlay">
+              <span class="video-badge">4K CINEMATIC MINI-FEATURE</span>
+              <h3 class="video-heading">The Craft of the Perfect Pour</h3>
+              <p class="video-desc">Step behind the bar with our head roaster as single-origin beans are ground, measured, and poured with deliberate attention.</p>
+              <div class="video-timeline-bar">
+                <span class="video-progress" style="width: 45%;"></span>
+              </div>
+              <div class="video-time-row">
+                <span>01:14</span>
+                <span>02:45</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. FULL DIGITAL MENU MODAL -->
+  <div id="full-menu-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-label="Complete Coffee House Menu" hidden>
+    <div class="modal-card full-menu-card">
+      <button id="full-menu-close" class="modal-close-btn" aria-label="Close complete menu">✕</button>
+      <div class="full-menu-header">
+        <span class="section-eyebrow eyebrow-light">CAFFEINE COVE DIGITAL LEDGER</span>
+        <h3 class="full-menu-title">The Complete Coffee & Hearth Menu</h3>
+        <p class="full-menu-sub">Prepared with ethically sourced single-origin beans and local farm milk.</p>
+      </div>
+      <div class="full-menu-body">
+        <div class="menu-category-section">
+          <h4 class="menu-cat-title">Espresso & Milk Classics</h4>
+          <ul class="ledger-list">
+            <li><div class="l-info"><span class="l-name">Single Origin Espresso</span><span class="l-desc">Bright berry notes, honey sweetness. Double ristretto.</span></div><span class="l-price">₹160 / $4.00</span></li>
+            <li><div class="l-info"><span class="l-name">Velvet Latte</span><span class="l-desc">Smooth espresso with silky microfoam milk.</span></div><span class="l-price">₹220 / $5.50</span></li>
+            <li><div class="l-info"><span class="l-name">Flat White</span><span class="l-desc">Velvety microfoam over a double espresso shot.</span></div><span class="l-price">₹210 / $5.25</span></li>
+            <li><div class="l-info"><span class="l-name">Cortado</span><span class="l-desc">Equal parts rich espresso and textured warm milk.</span></div><span class="l-price">₹190 / $4.75</span></li>
+            <li><div class="l-info"><span class="l-name">Classic Cappuccino</span><span class="l-desc">Equal thirds espresso, steamed milk, and dense froth.</span></div><span class="l-price">₹210 / $5.50</span></li>
+          </ul>
+        </div>
+
+        <div class="menu-category-section">
+          <h4 class="menu-cat-title">Cold Craft & Signature Brews</h4>
+          <ul class="ledger-list">
+            <li><div class="l-info"><span class="l-name">Caramel Cloud</span><span class="l-desc">Cold milk, rich caramel drizzle, espresso & cold foam.</span></div><span class="l-price">₹250 / $5.75</span></li>
+            <li><div class="l-info"><span class="l-name">Spanish Latte</span><span class="l-desc">Condensed milk layer, cinnamon spice, iced espresso.</span></div><span class="l-price">₹240 / $5.75</span></li>
+            <li><div class="l-info"><span class="l-name">Vanilla Cold Brew</span><span class="l-desc">20-hour steeped Ethiopian beans with vanilla bean sweet cream.</span></div><span class="l-price">₹230 / $5.50</span></li>
+            <li><div class="l-info"><span class="l-name">Mocha Noir</span><span class="l-desc">70% single-origin dark chocolate, espresso, whipped cream.</span></div><span class="l-price">₹260 / $6.00</span></li>
+            <li><div class="l-info"><span class="l-name">Kyoto Drip Filter</span><span class="l-desc">Slow drop-by-drop cold extraction with wine-like complexity.</span></div><span class="l-price">₹280 / $6.50</span></li>
+          </ul>
+        </div>
+
+        <div class="menu-category-section">
+          <h4 class="menu-cat-title">Fresh Hearth Bakes & Desserts</h4>
+          <ul class="ledger-list">
+            <li><div class="l-info"><span class="l-name">Butter Croissant</span><span class="l-desc">Hand-rolled French Normandy butter laminated pastry.</span></div><span class="l-price">₹180 / $4.50</span></li>
+            <li><div class="l-info"><span class="l-name">Almond Bostock Pastry</span><span class="l-desc">Twice baked with rich almond cream and toasted slices.</span></div><span class="l-price">₹190 / $4.75</span></li>
+            <li><div class="l-info"><span class="l-name">Chocolate Sea Salt Brownie</span><span class="l-desc">Belgian chocolate ganache square with Maldon salt flakes.</span></div><span class="l-price">₹190 / $4.75</span></li>
+            <li><div class="l-info"><span class="l-name">Wild Blueberry Cheesecake</span><span class="l-desc">New York style baked cheesecake with fresh blueberry compote.</span></div><span class="l-price">₹220 / $5.50</span></li>
+            <li><div class="l-info"><span class="l-name">Warm Cardamom Morning Bun</span><span class="l-desc">Caramelized sugar spiced with green cardamom pods.</span></div><span class="l-price">₹170 / $4.25</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7. GET DIRECTIONS MODAL -->
+  <div id="directions-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-label="Directions to Caffeine Cove" hidden>
+    <div class="modal-card directions-card">
+      <button id="directions-modal-close" class="modal-close-btn" aria-label="Close directions modal">✕</button>
+      <div class="directions-header">
+        <h3 class="directions-title">Visit Caffeine Cove</h3>
+        <p class="directions-sub">123 Coffee Lane, Dream City, DC 12345</p>
+      </div>
+      <div class="directions-map-placeholder">
+        <div class="map-visual">
+          <div class="map-pin-pulse">
+            <span class="pin-marker">☕</span>
+          </div>
+          <span class="map-label">Caffeine Cove — Main Corner</span>
+        </div>
+      </div>
+      <div class="directions-transit-info">
+        <div class="transit-step">
+          <strong>🚇 Metro / Transit:</strong> Dream City Central Station (Exit 4, 300m stroll down cobblestone alley).
+        </div>
+        <div class="transit-step">
+          <strong>🚗 Parking:</strong> Complimentary valet available along Coffee Lane, or civic parking lot across the square.
+        </div>
+        <div class="transit-step">
+          <strong>🚶 Accessibility:</strong> Step-free entrance, wide doorways, guide-dog friendly, quiet seating available on request.
+        </div>
+      </div>
+      <div class="directions-actions">
+        <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer" class="btn btn-caramel-full">Open in Google Maps (Sample)</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 8. PROCESS / CRAFT MODAL -->
+  <div id="process-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-label="Our Coffee Craft and Process" hidden>
+    <div class="modal-card process-modal-card">
+      <button id="process-modal-close" class="modal-close-btn" aria-label="Close process modal">✕</button>
+      <div class="modal-header">
+        <span class="section-eyebrow eyebrow-light">THE CRAFT BEHIND THE CUP</span>
+        <h3 class="modal-title">Our Three Pillars of Coffee</h3>
+      </div>
+      <div class="pillars-grid">
+        <div class="pillar-box">
+          <span class="pillar-num">01</span>
+          <h4>Ethical Sourcing</h4>
+          <p>We work directly with sustainable smallholder farms across Ethiopia, Colombia, and Chikmagalur. Fair pay and regenerative farming ensure vibrant coffee harvest.</p>
+        </div>
+        <div class="pillar-box">
+          <span class="pillar-num">02</span>
+          <h4>Artisan Small-Batch Roasting</h4>
+          <p>Roasted locally twice weekly in 12kg batches. We profile each bean specifically to highlight floral aromatics, natural sweetness, and silky mouthfeel.</p>
+        </div>
+        <div class="pillar-box">
+          <span class="pillar-num">03</span>
+          <h4>Precision Extraction</h4>
+          <p>Every espresso is dialed in every morning to within 0.1g dose accuracy and tailored water TDS mineral levels. No shortcuts, no rush.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 9. LEGAL / CLIENT INFORMATION MODALS -->
+  <div id="legal-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-label="Legal Information" hidden>
+    <div class="modal-card legal-card">
+      <button id="legal-modal-close" class="modal-close-btn" aria-label="Close legal modal">✕</button>
+      <h3 id="legal-modal-title" class="legal-title">Privacy Policy</h3>
+      <div id="legal-modal-content" class="legal-content"></div>
+    </div>
+  </div>
+
+  <!-- Main JavaScript File -->
+  <script src="script.js"></script>
+</body>
+</html>
