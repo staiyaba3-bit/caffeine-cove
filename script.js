@@ -48,6 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const trayEmptyState = document.getElementById('tray-empty-state');
   const trayTotalPriceEl = document.getElementById('tray-total-price');
   const trayCheckoutBtn = document.getElementById('tray-checkout-btn');
+  const trayHeaderBadge = document.getElementById('tray-header-count-badge');
 
   // Customizer Modal
   const itemModal = document.getElementById('item-modal');
@@ -57,6 +58,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const customModalDesc = document.getElementById('custom-modal-desc');
   const customModalPrice = document.getElementById('custom-modal-price');
   const confirmAddTrayBtn = document.getElementById('confirm-add-tray-btn');
+  const modalQtyMinus = document.getElementById('modal-qty-minus');
+  const modalQtyPlus = document.getElementById('modal-qty-plus');
+  const modalQtyVal = document.getElementById('modal-qty-val');
 
   // Menu Filters
   const filterPills = document.querySelectorAll('.filter-pill');
@@ -97,6 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const openFullMenuBtn = document.getElementById('open-full-menu-btn');
   const openFullPastriesBtn = document.getElementById('open-full-pastries-btn');
   const fullMenuClose = document.getElementById('full-menu-close');
+  const fullMenuBottomClose = document.getElementById('full-menu-bottom-close');
 
   const videoModal = document.getElementById('video-story-modal');
   const openStoryVideoBtn = document.getElementById('open-story-video-btn');
@@ -256,7 +261,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // =========================================================================
-  // 8. TASTING TRAY & ITEM CUSTOMIZATION
+  // 8. TASTING TRAY & ITEM CUSTOMIZATION (WITH CUP QUANTITY STEPER)
   // =========================================================================
   function saveTray() {
     localStorage.setItem('cove_tray', JSON.stringify(state.tastingTray));
@@ -265,8 +270,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function renderTray() {
     const isUSD = state.currency === 'USD';
-    const totalItems = state.tastingTray.reduce((acc, item) => acc + item.quantity, 0);
+    const totalItems = state.tastingTray.reduce((acc, item) => acc + (parseInt(item.quantity, 10) || 1), 0);
     if (trayCountEl) trayCountEl.textContent = totalItems;
+    if (trayHeaderBadge) {
+      trayHeaderBadge.textContent = `${totalItems} ${totalItems === 1 ? 'cup' : 'cups'}`;
+    }
 
     if (!trayListEl) return;
     trayListEl.innerHTML = '';
@@ -282,19 +290,38 @@ document.addEventListener('DOMContentLoaded', () => {
     let subtotal = 0;
 
     state.tastingTray.forEach((item, index) => {
-      const priceNum = isUSD ? item.priceUsd : item.priceInr;
-      const itemSubtotal = priceNum * item.quantity;
+      const qty = Math.max(1, parseInt(item.quantity, 10) || 1);
+      item.quantity = qty;
+      const priceNum = isUSD ? (item.priceUsd || 0) : (item.priceInr || 0);
+      const unitPriceStr = isUSD ? `$${priceNum.toFixed(2)}` : `₹${priceNum}`;
+      const itemSubtotal = priceNum * qty;
       subtotal += itemSubtotal;
+      const itemSubtotalStr = isUSD ? `$${itemSubtotal.toFixed(2)}` : `₹${itemSubtotal}`;
 
       const li = document.createElement('li');
       li.className = 'tray-item-row';
       li.innerHTML = `
-        <div class="tray-item-details">
-          <span class="tray-item-title">${item.title} ${item.quantity > 1 ? `× ${item.quantity}` : ''}</span>
-          ${item.options ? `<span class="tray-item-customs">${item.options}</span>` : ''}
+        <div class="tray-item-top">
+          <div class="tray-item-details">
+            <span class="tray-item-title">${item.title}</span>
+            ${item.options ? `<span class="tray-item-customs">${item.options}</span>` : ''}
+          </div>
+          <button class="tray-item-remove" data-index="${index}" aria-label="Remove ${item.title}" title="Remove item from tray">✕</button>
         </div>
-        <span class="tray-item-price">${isUSD ? `$${itemSubtotal.toFixed(2)}` : `₹${itemSubtotal}`}</span>
-        <button class="tray-item-remove" data-index="${index}" aria-label="Remove ${item.title}">✕</button>
+        <div class="tray-item-bottom">
+          <div class="tray-qty-wrap">
+            <span class="tray-qty-label">Cups:</span>
+            <div class="tray-qty-stepper" role="group" aria-label="Quantity for ${item.title}">
+              <button type="button" class="tray-qty-btn tray-qty-minus" data-index="${index}" aria-label="Minus 1 cup of ${item.title}" title="Minus 1 cup">−</button>
+              <span class="tray-qty-count" aria-live="polite">${qty} ${qty === 1 ? 'cup' : 'cups'}</span>
+              <button type="button" class="tray-qty-btn tray-qty-plus" data-index="${index}" aria-label="Plus 1 cup of ${item.title}" title="Plus 1 cup">＋</button>
+            </div>
+          </div>
+          <div class="tray-item-pricing">
+            <span class="tray-item-price">${itemSubtotalStr}</span>
+            ${qty > 1 ? `<span class="tray-unit-hint">(${unitPriceStr} / cup)</span>` : ''}
+          </div>
+        </div>
       `;
       trayListEl.appendChild(li);
     });
@@ -303,13 +330,51 @@ document.addEventListener('DOMContentLoaded', () => {
       trayTotalPriceEl.textContent = isUSD ? `$${subtotal.toFixed(2)}` : `₹${subtotal}`;
     }
 
-    // Attach remove handlers
+    // Attach Plus handlers (+1 cup)
+    trayListEl.querySelectorAll('.tray-qty-plus').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const idx = parseInt(btn.getAttribute('data-index'), 10);
+        if (state.tastingTray[idx]) {
+          state.tastingTray[idx].quantity = (parseInt(state.tastingTray[idx].quantity, 10) || 1) + 1;
+          saveTray();
+          showToast(`+1 Cup added to ${state.tastingTray[idx].title} (${state.tastingTray[idx].quantity} cups total)`);
+        }
+      });
+    });
+
+    // Attach Minus handlers (-1 cup)
+    trayListEl.querySelectorAll('.tray-qty-minus').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const idx = parseInt(btn.getAttribute('data-index'), 10);
+        if (state.tastingTray[idx]) {
+          const currentQty = parseInt(state.tastingTray[idx].quantity, 10) || 1;
+          if (currentQty > 1) {
+            state.tastingTray[idx].quantity = currentQty - 1;
+            saveTray();
+            showToast(`-1 Cup reduced for ${state.tastingTray[idx].title} (${state.tastingTray[idx].quantity} cups remaining)`);
+          } else {
+            const removedTitle = state.tastingTray[idx].title;
+            state.tastingTray.splice(idx, 1);
+            saveTray();
+            showToast(`Removed ${removedTitle} from tasting tray`);
+          }
+        }
+      });
+    });
+
+    // Attach Remove handlers (✕)
     trayListEl.querySelectorAll('.tray-item-remove').forEach(btn => {
       btn.addEventListener('click', (e) => {
+        e.stopPropagation();
         const idx = parseInt(btn.getAttribute('data-index'), 10);
-        state.tastingTray.splice(idx, 1);
-        saveTray();
-        showToast('Item removed from tray.');
+        if (state.tastingTray[idx]) {
+          const removedTitle = state.tastingTray[idx].title;
+          state.tastingTray.splice(idx, 1);
+          saveTray();
+          showToast(`Removed ${removedTitle} from tasting tray`);
+        }
       });
     });
   }
@@ -338,11 +403,45 @@ document.addEventListener('DOMContentLoaded', () => {
         showToast('Your tasting tray is empty.');
         return;
       }
+      const totalCups = state.tastingTray.reduce((acc, item) => acc + (parseInt(item.quantity, 10) || 1), 0);
       closeTray();
-      showToast('☕ Tasting order noted for your table session! (Demo mode)');
+      showToast(`☕ Tasting order of ${totalCups} ${totalCups === 1 ? 'cup' : 'cups'} confirmed for your table session! (Demo mode)`);
       state.tastingTray = [];
       saveTray();
     });
+  }
+
+  // Update Modal Price Preview based on milk choice and cup quantity
+  function updateModalPricePreview() {
+    if (!state.modalPendingItem) return;
+    const isUSD = state.currency === 'USD';
+    const milk = document.querySelector('input[name="milk"]:checked')?.value || 'Whole Milk';
+    let addInr = 0;
+    let addUsd = 0;
+    if (milk.includes('+₹30')) {
+      addInr = 30;
+      addUsd = 0.50;
+    }
+
+    const unitInr = state.modalPendingItem.priceInr + addInr;
+    const unitUsd = state.modalPendingItem.priceUsd + addUsd;
+    const qty = state.modalPendingItem.quantity || 1;
+    const totalInr = unitInr * qty;
+    const totalUsd = unitUsd * qty;
+
+    if (customModalPrice) {
+      if (qty > 1) {
+        customModalPrice.textContent = isUSD
+          ? `$${totalUsd.toFixed(2)} (${qty} cups · $${unitUsd.toFixed(2)}/cup)`
+          : `₹${totalInr} (${qty} cups · ₹${unitInr}/cup)`;
+      } else {
+        customModalPrice.textContent = isUSD ? `$${totalUsd.toFixed(2)}` : `₹${totalInr}`;
+      }
+    }
+
+    if (modalQtyVal) {
+      modalQtyVal.textContent = `${qty} ${qty === 1 ? 'cup' : 'cups'}`;
+    }
   }
 
   // Card "+" button customizer trigger
@@ -356,18 +455,58 @@ document.addEventListener('DOMContentLoaded', () => {
       const priceInr = parseFloat(card.getAttribute('data-price-inr'));
       const priceUsd = parseFloat(card.getAttribute('data-price-usd'));
 
-      state.modalPendingItem = { title, desc, img, priceInr, priceUsd };
+      state.modalPendingItem = {
+        title,
+        desc,
+        img,
+        priceInr,
+        priceUsd,
+        quantity: 1
+      };
 
       customModalImg.src = img;
       customModalImg.alt = title;
       customModalTitle.textContent = title;
       customModalDesc.textContent = desc;
 
-      const isUSD = state.currency === 'USD';
-      customModalPrice.textContent = isUSD ? `$${priceUsd.toFixed(2)}` : `₹${priceInr}`;
+      // Reset options to default
+      const wholeMilkRadio = document.querySelector('input[name="milk"][value="Whole Milk"]');
+      if (wholeMilkRadio) wholeMilkRadio.checked = true;
+      const stdSweetRadio = document.querySelector('input[name="sweetness"][value="Standard"]');
+      if (stdSweetRadio) stdSweetRadio.checked = true;
+      const warmTempRadio = document.querySelector('input[name="temp"][value="Served Warm"]');
+      if (warmTempRadio) warmTempRadio.checked = true;
 
+      updateModalPricePreview();
       openModal(itemModal);
     });
+  });
+
+  // Modal Cup Stepper Plus Button
+  if (modalQtyPlus) {
+    modalQtyPlus.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (!state.modalPendingItem) return;
+      state.modalPendingItem.quantity = (state.modalPendingItem.quantity || 1) + 1;
+      updateModalPricePreview();
+    });
+  }
+
+  // Modal Cup Stepper Minus Button
+  if (modalQtyMinus) {
+    modalQtyMinus.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (!state.modalPendingItem) return;
+      if (state.modalPendingItem.quantity > 1) {
+        state.modalPendingItem.quantity -= 1;
+        updateModalPricePreview();
+      }
+    });
+  }
+
+  // Watch milk radio changes to recalculate unit and total price
+  document.querySelectorAll('input[name="milk"]').forEach(radio => {
+    radio.addEventListener('change', updateModalPricePreview);
   });
 
   // Treat "+" button direct add
@@ -386,7 +525,7 @@ document.addEventListener('DOMContentLoaded', () => {
         options: 'Freshly Baked Hearth',
         quantity: 1
       });
-      showToast(`Added ${title} to your tasting tray.`);
+      showToast(`Added 1 × ${title} to your tasting tray.`);
     });
   });
 
@@ -405,24 +544,28 @@ document.addEventListener('DOMContentLoaded', () => {
         addUsd = 0.50;
       }
 
+      const qty = state.modalPendingItem.quantity || 1;
+
       addItemToTray({
         title: state.modalPendingItem.title,
         priceInr: state.modalPendingItem.priceInr + addInr,
         priceUsd: state.modalPendingItem.priceUsd + addUsd,
         options: `${milk} • ${sweetness} • ${temp}`,
-        quantity: 1
+        quantity: qty
       });
 
       closeModal(itemModal);
-      showToast(`Added ${state.modalPendingItem.title} to tray.`);
+      showToast(`Added ${qty} ${qty === 1 ? 'cup' : 'cups'} of ${state.modalPendingItem.title} to tray.`);
     });
   }
 
   function addItemToTray(newItem) {
+    const qtyToAdd = Math.max(1, parseInt(newItem.quantity, 10) || 1);
     const existingIndex = state.tastingTray.findIndex(it => it.title === newItem.title && it.options === newItem.options);
     if (existingIndex > -1) {
-      state.tastingTray[existingIndex].quantity += 1;
+      state.tastingTray[existingIndex].quantity = (parseInt(state.tastingTray[existingIndex].quantity, 10) || 1) + qtyToAdd;
     } else {
+      newItem.quantity = qtyToAdd;
       state.tastingTray.push(newItem);
     }
     saveTray();
@@ -708,12 +851,18 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!modalEl) return;
     modalEl.removeAttribute('hidden');
     document.body.classList.add('scroll-locked');
+    if (modalEl === videoModal && window.initStoryCinemaVideo) {
+      window.initStoryCinemaVideo();
+    }
     const firstFocusable = modalEl.querySelector('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
     if (firstFocusable) firstFocusable.focus();
   }
 
   function closeModal(modalEl) {
     if (!modalEl) return;
+    if (modalEl === videoModal && window.pauseStoryCinemaVideo) {
+      window.pauseStoryCinemaVideo();
+    }
     modalEl.setAttribute('hidden', '');
     document.body.classList.remove('scroll-locked');
   }
@@ -735,6 +884,10 @@ document.addEventListener('DOMContentLoaded', () => {
       });
       closeTray();
       closeMobileNav();
+    } else if (e.key === ' ' && videoModal && !videoModal.hasAttribute('hidden') && e.target.tagName !== 'BUTTON' && e.target.tagName !== 'INPUT') {
+      e.preventDefault();
+      const playBtn = document.getElementById('video-play-toggle-btn');
+      if (playBtn) playBtn.click();
     } else if (e.key === 'ArrowLeft' && !lightboxModal.hasAttribute('hidden')) {
       showLightboxIndex(state.currentGalleryIndex - 1);
     } else if (e.key === 'ArrowRight' && !lightboxModal.hasAttribute('hidden')) {
@@ -752,8 +905,416 @@ document.addEventListener('DOMContentLoaded', () => {
   if (openFullMenuBtn) openFullMenuBtn.addEventListener('click', () => openModal(fullMenuModal));
   if (openFullPastriesBtn) openFullPastriesBtn.addEventListener('click', () => openModal(fullMenuModal));
   if (fullMenuClose) fullMenuClose.addEventListener('click', () => closeModal(fullMenuModal));
+  if (fullMenuBottomClose) fullMenuBottomClose.addEventListener('click', () => closeModal(fullMenuModal));
 
-  // Video Story Modal
+  // =========================================================================
+  // CINEMATIC STORY VIDEO PLAYER CONTROLLER
+  // =========================================================================
+  const mainStoryVideo = document.getElementById('main-story-video');
+  const videoWrapper = document.getElementById('video-player-wrapper');
+  const videoCenterPlayBtn = document.getElementById('video-center-play-btn');
+  const videoPlayToggleBtn = document.getElementById('video-play-toggle-btn');
+  const videoScrubberTrack = document.getElementById('video-scrubber-track');
+  const videoScrubberProgress = document.getElementById('video-scrubber-progress');
+  const videoBufferBar = document.getElementById('video-buffer-bar');
+  const videoScrubberThumb = document.getElementById('video-scrubber-thumb');
+  const videoScrubberTooltip = document.getElementById('video-scrubber-tooltip');
+  const videoCurrTime = document.getElementById('video-curr-time');
+  const videoTotalTime = document.getElementById('video-total-time');
+  const videoAmbientSoundBtn = document.getElementById('video-ambient-sound-btn');
+  const ambientAudioToast = document.getElementById('ambient-audio-toast');
+  const videoMuteToggleBtn = document.getElementById('video-mute-toggle-btn');
+  const videoVolumeSlider = document.getElementById('video-volume-slider');
+  const videoFullscreenBtn = document.getElementById('video-fullscreen-btn');
+  const chapterTabs = document.querySelectorAll('.chapter-tab');
+  const currentChapterTitle = document.getElementById('video-chapter-title');
+  const currentChapterDesc = document.getElementById('video-chapter-desc');
+  const customVideoControls = document.getElementById('custom-video-controls');
+
+  let controlsHideTimeout = null;
+  let isDraggingScrubber = false;
+  let ambientAudioCtx = null;
+  let ambientNoiseNode = null;
+  let ambientGainNode = null;
+  let isAmbientActive = false;
+
+  function formatTime(seconds) {
+    if (isNaN(seconds) || seconds < 0) return '00:00';
+    const mins = Math.floor(seconds / 60);
+    const secs = Math.floor(seconds % 60);
+    return `${mins < 10 ? '0' : ''}${mins}:${secs < 10 ? '0' : ''}${secs}`;
+  }
+
+  function updatePlayPauseIcons(isPlaying) {
+    if (!videoCenterPlayBtn || !videoPlayToggleBtn) return;
+    const playSvg = videoPlayToggleBtn.querySelector('.v-icon-play');
+    const pauseSvg = videoPlayToggleBtn.querySelector('.v-icon-pause');
+    const centerPlaySvg = videoCenterPlayBtn.querySelector('.icon-play');
+    const centerPauseSvg = videoCenterPlayBtn.querySelector('.icon-pause');
+
+    if (isPlaying) {
+      videoCenterPlayBtn.classList.add('playing');
+      if (playSvg) playSvg.classList.add('hidden');
+      if (pauseSvg) pauseSvg.classList.remove('hidden');
+      if (centerPlaySvg) centerPlaySvg.classList.add('hidden');
+      if (centerPauseSvg) centerPauseSvg.classList.remove('hidden');
+    } else {
+      videoCenterPlayBtn.classList.remove('playing');
+      if (playSvg) playSvg.classList.remove('hidden');
+      if (pauseSvg) pauseSvg.classList.add('hidden');
+      if (centerPlaySvg) centerPlaySvg.classList.remove('hidden');
+      if (centerPauseSvg) centerPauseSvg.classList.add('hidden');
+    }
+  }
+
+  function togglePlayPause() {
+    if (!mainStoryVideo) return;
+    if (mainStoryVideo.paused || mainStoryVideo.ended) {
+      mainStoryVideo.play().then(() => {
+        updatePlayPauseIcons(true);
+        scheduleControlsHide();
+      }).catch(err => {
+        console.warn('Playback error:', err);
+        mainStoryVideo.muted = true;
+        mainStoryVideo.play().then(() => updatePlayPauseIcons(true));
+      });
+    } else {
+      mainStoryVideo.pause();
+      updatePlayPauseIcons(false);
+      showControls();
+    }
+  }
+
+  function scheduleControlsHide() {
+    clearTimeout(controlsHideTimeout);
+    if (!mainStoryVideo || mainStoryVideo.paused) return;
+    controlsHideTimeout = setTimeout(() => {
+      if (customVideoControls && !mainStoryVideo.paused && !isDraggingScrubber) {
+        customVideoControls.classList.add('controls-hidden');
+      }
+    }, 2800);
+  }
+
+  function showControls() {
+    clearTimeout(controlsHideTimeout);
+    if (customVideoControls) {
+      customVideoControls.classList.remove('controls-hidden');
+    }
+  }
+
+  // Web Audio Synthesized Warm Cafe Ambience
+  function toggleAmbientCafeAudio() {
+    try {
+      const AudioCtx = window.AudioContext || window.webkitAudioContext;
+      if (!AudioCtx) return;
+
+      if (!ambientAudioCtx) {
+        ambientAudioCtx = new AudioCtx();
+      }
+
+      if (ambientAudioCtx.state === 'suspended') {
+        ambientAudioCtx.resume();
+      }
+
+      if (isAmbientActive) {
+        if (ambientGainNode) {
+          ambientGainNode.gain.linearRampToValueAtTime(0.0001, ambientAudioCtx.currentTime + 0.4);
+        }
+        isAmbientActive = false;
+        if (videoAmbientSoundBtn) videoAmbientSoundBtn.classList.remove('active');
+        if (ambientAudioToast) ambientAudioToast.classList.remove('active');
+      } else {
+        const bufferSize = ambientAudioCtx.sampleRate * 2;
+        const noiseBuffer = ambientAudioCtx.createBuffer(1, bufferSize, ambientAudioCtx.sampleRate);
+        const output = noiseBuffer.getChannelData(0);
+        let b0 = 0, b1 = 0, b2 = 0, b3 = 0, b4 = 0, b5 = 0, b6 = 0;
+        for (let i = 0; i < bufferSize; i++) {
+          const white = Math.random() * 2 - 1;
+          b0 = 0.99886 * b0 + white * 0.0555179;
+          b1 = 0.99332 * b1 + white * 0.0750759;
+          b2 = 0.96900 * b2 + white * 0.1538520;
+          b3 = 0.86650 * b3 + white * 0.3104856;
+          b4 = 0.55000 * b4 + white * 0.5329522;
+          b5 = -0.7616 * b5 - white * 0.0168980;
+          output[i] = (b0 + b1 + b2 + b3 + b4 + b5 + b6 + white * 0.5362) * 0.035;
+          b6 = white * 0.115926;
+        }
+
+        const whiteNoiseSource = ambientAudioCtx.createBufferSource();
+        whiteNoiseSource.buffer = noiseBuffer;
+        whiteNoiseSource.loop = true;
+
+        const lowpass = ambientAudioCtx.createBiquadFilter();
+        lowpass.type = 'lowpass';
+        lowpass.frequency.value = 420;
+
+        ambientGainNode = ambientAudioCtx.createGain();
+        ambientGainNode.gain.setValueAtTime(0.0001, ambientAudioCtx.currentTime);
+        ambientGainNode.gain.linearRampToValueAtTime(0.08, ambientAudioCtx.currentTime + 0.6);
+
+        whiteNoiseSource.connect(lowpass);
+        lowpass.connect(ambientGainNode);
+        ambientGainNode.connect(ambientAudioCtx.destination);
+        whiteNoiseSource.start(0);
+
+        ambientNoiseNode = whiteNoiseSource;
+        isAmbientActive = true;
+        if (videoAmbientSoundBtn) videoAmbientSoundBtn.classList.add('active');
+        if (ambientAudioToast) {
+          ambientAudioToast.classList.add('active');
+          setTimeout(() => {
+            ambientAudioToast.classList.remove('active');
+          }, 3500);
+        }
+      }
+    } catch (e) {
+      console.warn('Web Audio Ambient error:', e);
+    }
+  }
+
+  function stopAmbientAudio() {
+    if (isAmbientActive && ambientAudioCtx && ambientGainNode) {
+      try {
+        ambientGainNode.gain.linearRampToValueAtTime(0.0001, ambientAudioCtx.currentTime + 0.2);
+        isAmbientActive = false;
+        if (videoAmbientSoundBtn) videoAmbientSoundBtn.classList.remove('active');
+        if (ambientAudioToast) ambientAudioToast.classList.remove('active');
+      } catch (e) {}
+    }
+  }
+
+  // Setup Story Video Player Listeners
+  if (mainStoryVideo) {
+    mainStoryVideo.addEventListener('timeupdate', () => {
+      if (!isDraggingScrubber && mainStoryVideo.duration) {
+        const pct = (mainStoryVideo.currentTime / mainStoryVideo.duration) * 100;
+        if (videoScrubberProgress) videoScrubberProgress.style.width = `${pct}%`;
+        if (videoScrubberThumb) videoScrubberThumb.style.left = `${pct}%`;
+        if (videoCurrTime) videoCurrTime.textContent = formatTime(mainStoryVideo.currentTime);
+      }
+    });
+
+    mainStoryVideo.addEventListener('progress', () => {
+      if (mainStoryVideo.buffered.length > 0 && mainStoryVideo.duration) {
+        const bufferedEnd = mainStoryVideo.buffered.end(mainStoryVideo.buffered.length - 1);
+        const pct = (bufferedEnd / mainStoryVideo.duration) * 100;
+        if (videoBufferBar) videoBufferBar.style.width = `${pct}%`;
+      }
+    });
+
+    mainStoryVideo.addEventListener('loadedmetadata', () => {
+      if (videoTotalTime) videoTotalTime.textContent = formatTime(mainStoryVideo.duration);
+    });
+
+    mainStoryVideo.addEventListener('play', () => updatePlayPauseIcons(true));
+    mainStoryVideo.addEventListener('pause', () => updatePlayPauseIcons(false));
+
+    mainStoryVideo.addEventListener('ended', () => {
+      updatePlayPauseIcons(false);
+      let activeIndex = -1;
+      chapterTabs.forEach((tab, idx) => {
+        if (tab.classList.contains('active')) activeIndex = idx;
+      });
+      const nextIndex = (activeIndex + 1) % chapterTabs.length;
+      if (chapterTabs[nextIndex]) {
+        switchChapter(chapterTabs[nextIndex], true);
+      }
+    });
+
+    mainStoryVideo.addEventListener('click', togglePlayPause);
+  }
+
+  if (videoWrapper) {
+    videoWrapper.addEventListener('mousemove', () => {
+      showControls();
+      scheduleControlsHide();
+    });
+    videoWrapper.addEventListener('touchstart', () => {
+      showControls();
+      scheduleControlsHide();
+    }, { passive: true });
+    videoWrapper.addEventListener('mouseleave', () => {
+      if (mainStoryVideo && !mainStoryVideo.paused) {
+        scheduleControlsHide();
+      }
+    });
+  }
+
+  if (videoCenterPlayBtn) {
+    videoCenterPlayBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      togglePlayPause();
+    });
+  }
+
+  if (videoPlayToggleBtn) {
+    videoPlayToggleBtn.addEventListener('click', togglePlayPause);
+  }
+
+  // Scrubber Seeking
+  function handleScrubberSeek(e) {
+    if (!mainStoryVideo || !videoScrubberTrack || !mainStoryVideo.duration) return;
+    const rect = videoScrubberTrack.getBoundingClientRect();
+    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+    const pos = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
+    mainStoryVideo.currentTime = pos * mainStoryVideo.duration;
+    if (videoScrubberProgress) videoScrubberProgress.style.width = `${pos * 100}%`;
+    if (videoScrubberThumb) videoScrubberThumb.style.left = `${pos * 100}%`;
+    if (videoCurrTime) videoCurrTime.textContent = formatTime(pos * mainStoryVideo.duration);
+  }
+
+  if (videoScrubberTrack) {
+    videoScrubberTrack.addEventListener('mousemove', (e) => {
+      if (!mainStoryVideo || !mainStoryVideo.duration || !videoScrubberTooltip) return;
+      const rect = videoScrubberTrack.getBoundingClientRect();
+      const pos = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+      videoScrubberTooltip.style.left = `${pos * 100}%`;
+      videoScrubberTooltip.textContent = formatTime(pos * mainStoryVideo.duration);
+    });
+
+    videoScrubberTrack.addEventListener('mousedown', (e) => {
+      isDraggingScrubber = true;
+      handleScrubberSeek(e);
+      const onMouseMove = (ev) => handleScrubberSeek(ev);
+      const onMouseUp = () => {
+        isDraggingScrubber = false;
+        window.removeEventListener('mousemove', onMouseMove);
+        window.removeEventListener('mouseup', onMouseUp);
+        scheduleControlsHide();
+      };
+      window.addEventListener('mousemove', onMouseMove);
+      window.addEventListener('mouseup', onMouseUp);
+    });
+
+    videoScrubberTrack.addEventListener('touchstart', (e) => {
+      isDraggingScrubber = true;
+      handleScrubberSeek(e);
+    }, { passive: true });
+
+    videoScrubberTrack.addEventListener('touchmove', (e) => {
+      if (isDraggingScrubber) handleScrubberSeek(e);
+    }, { passive: true });
+
+    videoScrubberTrack.addEventListener('touchend', () => {
+      isDraggingScrubber = false;
+      scheduleControlsHide();
+    });
+  }
+
+  if (videoAmbientSoundBtn) {
+    videoAmbientSoundBtn.addEventListener('click', toggleAmbientCafeAudio);
+  }
+
+  function updateVolumeIcons(isMuted) {
+    if (!videoMuteToggleBtn) return;
+    const highSvg = videoMuteToggleBtn.querySelector('.v-icon-volume-high');
+    const muteSvg = videoMuteToggleBtn.querySelector('.v-icon-volume-muted');
+    if (isMuted) {
+      if (highSvg) highSvg.classList.add('hidden');
+      if (muteSvg) muteSvg.classList.remove('hidden');
+    } else {
+      if (highSvg) highSvg.classList.remove('hidden');
+      if (muteSvg) muteSvg.classList.add('hidden');
+    }
+  }
+
+  if (videoMuteToggleBtn && mainStoryVideo) {
+    videoMuteToggleBtn.addEventListener('click', () => {
+      mainStoryVideo.muted = !mainStoryVideo.muted;
+      updateVolumeIcons(mainStoryVideo.muted);
+      if (videoVolumeSlider) {
+        videoVolumeSlider.value = mainStoryVideo.muted ? 0 : mainStoryVideo.volume;
+      }
+    });
+  }
+
+  if (videoVolumeSlider && mainStoryVideo) {
+    videoVolumeSlider.addEventListener('input', (e) => {
+      const val = parseFloat(e.target.value);
+      mainStoryVideo.volume = val;
+      mainStoryVideo.muted = (val === 0);
+      updateVolumeIcons(val === 0);
+    });
+  }
+
+  if (videoFullscreenBtn && videoWrapper) {
+    videoFullscreenBtn.addEventListener('click', () => {
+      if (!document.fullscreenElement && !document.webkitFullscreenElement) {
+        if (videoWrapper.requestFullscreen) {
+          videoWrapper.requestFullscreen();
+        } else if (videoWrapper.webkitRequestFullscreen) {
+          videoWrapper.webkitRequestFullscreen();
+        }
+      } else {
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+        } else if (document.webkitExitFullscreen) {
+          document.webkitExitFullscreen();
+        }
+      }
+    });
+  }
+
+  function switchChapter(tabBtn, autoplay = true) {
+    if (!tabBtn || !mainStoryVideo) return;
+    chapterTabs.forEach(t => {
+      t.classList.remove('active');
+      t.setAttribute('aria-selected', 'false');
+    });
+    tabBtn.classList.add('active');
+    tabBtn.setAttribute('aria-selected', 'true');
+
+    const videoSrc = tabBtn.getAttribute('data-video');
+    const title = tabBtn.getAttribute('data-title');
+    const desc = tabBtn.getAttribute('data-desc');
+
+    if (currentChapterTitle && title) currentChapterTitle.textContent = title;
+    if (currentChapterDesc && desc) currentChapterDesc.textContent = desc;
+
+    if (videoSrc) {
+      mainStoryVideo.src = videoSrc;
+      mainStoryVideo.load();
+      if (autoplay) {
+        mainStoryVideo.play().then(() => {
+          updatePlayPauseIcons(true);
+          scheduleControlsHide();
+        }).catch(() => {
+          mainStoryVideo.muted = true;
+          mainStoryVideo.play().then(() => updatePlayPauseIcons(true));
+        });
+      }
+    }
+  }
+
+  chapterTabs.forEach(tab => {
+    tab.addEventListener('click', () => switchChapter(tab, true));
+  });
+
+  window.initStoryCinemaVideo = function() {
+    if (!mainStoryVideo) return;
+    showControls();
+    mainStoryVideo.play().then(() => {
+      updatePlayPauseIcons(true);
+      scheduleControlsHide();
+    }).catch(() => {
+      mainStoryVideo.muted = true;
+      updateVolumeIcons(true);
+      mainStoryVideo.play().then(() => {
+        updatePlayPauseIcons(true);
+        scheduleControlsHide();
+      }).catch(e => console.warn('Autoplay prevented:', e));
+    });
+  };
+
+  window.pauseStoryCinemaVideo = function() {
+    if (mainStoryVideo) {
+      mainStoryVideo.pause();
+      updatePlayPauseIcons(false);
+    }
+    stopAmbientAudio();
+  };
+
+  // Video Story Modal Triggers
   if (openStoryVideoBtn) openStoryVideoBtn.addEventListener('click', () => openModal(videoModal));
   if (openVideoBtn) openVideoBtn.addEventListener('click', () => openModal(videoModal));
   if (videoModalClose) videoModalClose.addEventListener('click', () => closeModal(videoModal));
@@ -762,10 +1323,27 @@ document.addEventListener('DOMContentLoaded', () => {
   if (getDirectionsBtn) getDirectionsBtn.addEventListener('click', () => openModal(directionsModal));
   if (directionsModalClose) directionsModalClose.addEventListener('click', () => closeModal(directionsModal));
 
-  // Process Modal
+  // Process / Learn More Modal
   if (openProcessBtn) openProcessBtn.addEventListener('click', () => openModal(processModal));
   if (learnMoreBtn) learnMoreBtn.addEventListener('click', () => openModal(processModal));
   if (processModalClose) processModalClose.addEventListener('click', () => closeModal(processModal));
+
+  const modalReserveBtn = document.getElementById('modal-reserve-btn');
+  const modalMenuBtn = document.getElementById('modal-menu-btn');
+  if (modalReserveBtn) {
+    modalReserveBtn.addEventListener('click', () => {
+      closeModal(processModal);
+      const visitSection = document.getElementById('visit');
+      if (visitSection) visitSection.scrollIntoView({ behavior: 'smooth' });
+    });
+  }
+  if (modalMenuBtn) {
+    modalMenuBtn.addEventListener('click', () => {
+      closeModal(processModal);
+      const menuSection = document.getElementById('signature-menu');
+      if (menuSection) menuSection.scrollIntoView({ behavior: 'smooth' });
+    });
+  }
 
   // Legal Modals Content Handlers
   if (legalModalClose) legalModalClose.addEventListener('click', () => closeModal(legalModal));

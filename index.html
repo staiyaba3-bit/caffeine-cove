@@ -30,7 +30,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 
   <!-- Main Stylesheet -->
-  <link rel="stylesheet" href="style.css?v=4">
+  <link rel="stylesheet" href="style.css?v=12">
 
   <!-- Schema.org Structured Data -->
   <script type="application/ld+json">
@@ -1462,6 +1462,7 @@
       <div class="tray-header-title">
         <span class="tray-icon">☕</span>
         <h3 class="drawer-title">Your Tasting Tray</h3>
+        <span id="tray-header-count-badge" class="tray-header-badge">0 cups</span>
       </div>
       <button id="tray-close-btn" class="drawer-close-btn" aria-label="Close tasting tray">✕</button>
     </div>
@@ -1532,6 +1533,16 @@
                 <label class="radio-pill"><input type="radio" name="temp" value="Iced Over Rocks"><span>Iced Over Rocks</span></label>
               </div>
             </div>
+
+            <!-- Cup Quantity Selector in Modal -->
+            <div class="option-block">
+              <label class="option-label">Quantity (Cups):</label>
+              <div class="modal-qty-selector">
+                <button type="button" id="modal-qty-minus" class="modal-qty-btn" aria-label="Decrease cups">−</button>
+                <span id="modal-qty-val" class="modal-qty-val">1 cup</span>
+                <button type="button" id="modal-qty-plus" class="modal-qty-btn" aria-label="Increase cups">＋</button>
+              </div>
+            </div>
           </div>
 
           <div class="modal-add-action">
@@ -1572,26 +1583,142 @@
   </div>
 
   <!-- 5. OUR STORY / VIDEO MODAL -->
-  <div id="video-story-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-label="Caffeine Cove Video Story" hidden>
+  <div id="video-story-modal" class="modal-overlay video-modal-overlay" role="dialog" aria-modal="true" aria-label="Caffeine Cove Video Story" hidden>
     <div class="modal-card video-card">
       <button id="video-modal-close" class="modal-close-btn" aria-label="Close video story">✕</button>
+      
+      <div class="video-cinema-header">
+        <div class="cinema-badge-row">
+          <span class="video-badge-pill">✨ AI CINEMATIC FEATURE</span>
+          <span class="video-badge-tag">CAFFEINE COVE ORIGINS · 4K</span>
+        </div>
+        <h3 class="cinema-video-title">The Story Behind Every Pour</h3>
+      </div>
+
       <div class="video-container">
-        <div class="video-mockup-wrapper">
-          <!-- Ambient coffee video player simulation -->
-          <div class="video-player-box">
-            <img src="images/dark_coffee_process.jpg" alt="Barista pulling espresso shot" class="video-still-img">
-            <div class="video-play-overlay">
-              <span class="video-badge">4K CINEMATIC MINI-FEATURE</span>
-              <h3 class="video-heading">The Craft of the Perfect Pour</h3>
-              <p class="video-desc">Step behind the bar with our head roaster as single-origin beans are ground, measured, and poured with deliberate attention.</p>
-              <div class="video-timeline-bar">
-                <span class="video-progress" style="width: 45%;"></span>
+        <div class="video-player-wrapper" id="video-player-wrapper">
+          <!-- Real HTML5 Video Player -->
+          <video 
+            id="main-story-video" 
+            class="main-story-video" 
+            poster="images/ai_story_cafe_video_poster.jpg" 
+            playsinline
+            preload="auto"
+          >
+            <source id="video-source-main" src="images/story_cafe_preview.mp4" type="video/mp4">
+            Your browser does not support HTML5 video.
+          </video>
+
+          <!-- Big Center Play/Pause Overlay Button -->
+          <button id="video-center-play-btn" class="video-big-play-btn" aria-label="Play or Pause video">
+            <span class="big-play-ring"></span>
+            <svg class="big-play-svg icon-play" viewBox="0 0 24 24" fill="currentColor">
+              <polygon points="6 4 20 12 6 20 6 4"/>
+            </svg>
+            <svg class="big-play-svg icon-pause hidden" viewBox="0 0 24 24" fill="currentColor">
+              <rect x="6" y="4" width="4" height="16"/>
+              <rect x="14" y="4" width="4" height="16"/>
+            </svg>
+          </button>
+
+          <!-- Ambient Cafe Sound Active Indicator -->
+          <div id="ambient-audio-toast" class="ambient-toast" aria-hidden="true">
+            <span class="coffee-cup-icon">☕</span> Cozy Cafe Ambience Playing
+          </div>
+
+          <!-- Custom Video Controls Bar -->
+          <div class="custom-video-controls" id="custom-video-controls">
+            <!-- Scrubber Progress Bar -->
+            <div class="video-scrubber-track" id="video-scrubber-track" role="slider" aria-label="Video timeline scrubber" tabindex="0">
+              <div class="video-buffer-bar" id="video-buffer-bar"></div>
+              <div class="video-scrubber-progress" id="video-scrubber-progress"></div>
+              <div class="video-scrubber-thumb" id="video-scrubber-thumb"></div>
+              <div class="video-scrubber-tooltip" id="video-scrubber-tooltip">00:00</div>
+            </div>
+
+            <div class="video-controls-row">
+              <div class="controls-left">
+                <!-- Play/Pause Button -->
+                <button id="video-play-toggle-btn" class="v-ctrl-btn" aria-label="Play/Pause">
+                  <svg class="v-icon-play" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon points="6 4 20 12 6 20 6 4"/>
+                  </svg>
+                  <svg class="v-icon-pause hidden" viewBox="0 0 24 24" fill="currentColor">
+                    <rect x="6" y="4" width="4" height="16"/>
+                    <rect x="14" y="4" width="4" height="16"/>
+                  </svg>
+                </button>
+
+                <!-- Time Display -->
+                <div class="video-time-display">
+                  <span id="video-curr-time">00:00</span>
+                  <span class="time-sep">/</span>
+                  <span id="video-total-time">00:00</span>
+                </div>
               </div>
-              <div class="video-time-row">
-                <span>01:14</span>
-                <span>02:45</span>
+
+              <div class="controls-right">
+                <!-- Ambient Cafe Sound Toggle -->
+                <button id="video-ambient-sound-btn" class="v-ctrl-btn ambient-btn" title="Toggle Cozy Cafe Ambient Audio" aria-label="Toggle Cozy Cafe Ambient Audio">
+                  <span class="ambient-icon">☕</span>
+                  <span class="ambient-label">Cafe Vibe</span>
+                </button>
+
+                <!-- Mute/Unmute & Volume -->
+                <div class="video-volume-group">
+                  <button id="video-mute-toggle-btn" class="v-ctrl-btn" aria-label="Mute or Unmute Audio">
+                    <svg class="v-icon-volume-high" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77zM16.5 12c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM3 9v6h4l5 5V4L7 9H3z"/>
+                    </svg>
+                    <svg class="v-icon-volume-muted hidden" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27l4.01 4.01H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81l2.04 2.04 1.27-1.27L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/>
+                    </svg>
+                  </button>
+                  <input type="range" id="video-volume-slider" class="volume-slider" min="0" max="1" step="0.05" value="0.8" aria-label="Volume level">
+                </div>
+
+                <!-- Fullscreen Toggle -->
+                <button id="video-fullscreen-btn" class="v-ctrl-btn" aria-label="Toggle Fullscreen">
+                  <svg class="v-icon-fullscreen" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/>
+                  </svg>
+                </button>
               </div>
             </div>
+          </div>
+        </div>
+
+        <!-- Story Chapters Navigation & Narrative -->
+        <div class="video-story-footer">
+          <div class="story-chapters-tabs" role="tablist" aria-label="Story Chapters">
+            <button class="chapter-tab active" data-video="images/story_cafe_preview.mp4" data-title="Chapter 1: The Velvet Pour" data-desc="Delicate single-origin brew poured into our signature ceramic cup with slow mindfulness." role="tab" aria-selected="true">
+              <span class="chap-num">01</span>
+              <span class="chap-info">
+                <span class="chap-name">The Velvet Pour</span>
+                <span class="chap-time">Artisan Craft</span>
+              </span>
+            </button>
+
+            <button class="chapter-tab" data-video="images/story_espresso_extraction.mp4" data-title="Chapter 2: 9-Bar Extraction" data-desc="Freshly roasted single-origin beans extracted at exact 9 bars of pressure for that thick, golden crema." role="tab" aria-selected="false">
+              <span class="chap-num">02</span>
+              <span class="chap-info">
+                <span class="chap-name">9-Bar Espresso</span>
+                <span class="chap-time">Golden Extraction</span>
+              </span>
+            </button>
+
+            <button class="chapter-tab" data-video="images/story_cappuccino_serving.mp4" data-title="Chapter 3: The Cove Hearth" data-desc="Handcrafted cappuccino served in warm amber lights—where time slows down." role="tab" aria-selected="false">
+              <span class="chap-num">03</span>
+              <span class="chap-info">
+                <span class="chap-name">Warmth & Hearth</span>
+                <span class="chap-time">Cafe Ambiance</span>
+              </span>
+            </button>
+          </div>
+
+          <div class="video-narrative-box">
+            <h4 id="video-chapter-title" class="current-chapter-title">Chapter 1: The Velvet Pour</h4>
+            <p id="video-chapter-desc" class="current-chapter-desc">Delicate single-origin brew poured into our signature ceramic cup with slow mindfulness.</p>
           </div>
         </div>
       </div>
@@ -1640,6 +1767,11 @@
             <li><div class="l-info"><span class="l-name">Warm Cardamom Morning Bun</span><span class="l-desc">Caramelized sugar spiced with green cardamom pods.</span></div><span class="l-price">₹170 / $4.25</span></li>
           </ul>
         </div>
+        <div class="full-menu-footer-bar">
+          <button type="button" id="full-menu-bottom-close" class="btn btn-caramel-outline full-menu-bottom-close-btn" aria-label="Close complete menu">
+            ✕ Close Full Menu
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -1677,31 +1809,109 @@
     </div>
   </div>
 
-  <!-- 8. PROCESS / CRAFT MODAL -->
-  <div id="process-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-label="Our Coffee Craft and Process" hidden>
+  <!-- 8. ABOUT CAFFEINE COVE & CRAFT MODAL (LEARN MORE) -->
+  <div id="process-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-label="About Caffeine Cove & Our Craft" hidden>
     <div class="modal-card process-modal-card">
       <button id="process-modal-close" class="modal-close-btn" aria-label="Close process modal">✕</button>
-      <div class="modal-header">
-        <span class="section-eyebrow eyebrow-light">THE CRAFT BEHIND THE CUP</span>
-        <h3 class="modal-title">Our Three Pillars of Coffee</h3>
+      
+      <!-- Modal Header -->
+      <div class="modal-header about-modal-header">
+        <div class="about-modal-badge-row">
+          <span class="section-eyebrow eyebrow-light">ABOUT CAFFEINE COVE · EST. 2025</span>
+          <span class="cove-origin-badge">YOUR LITTLE ESCAPE</span>
+        </div>
+        <h3 class="modal-title about-modal-title">Not Just Coffee. A Feeling.</h3>
+        <p class="about-modal-subtitle">
+          Founded as an antidote to the rushed world, Caffeine Cove is a neighborhood sanctuary where artisanal coffee, warm companionship, and mindful slow living come together.
+        </p>
       </div>
-      <div class="pillars-grid">
+
+      <!-- Quick Cafe Highlights Ribbon -->
+      <div class="cafe-highlights-ribbon">
+        <div class="highlight-chip">
+          <span class="chip-icon">🌿</span>
+          <span class="chip-text">100% Single-Origin Arabica</span>
+        </div>
+        <div class="highlight-chip">
+          <span class="chip-icon">🥐</span>
+          <span class="chip-text">Fresh Daily Hearth Bakery</span>
+        </div>
+        <div class="highlight-chip">
+          <span class="chip-icon">☕</span>
+          <span class="chip-text">Small-Batch Local Roast</span>
+        </div>
+        <div class="highlight-chip">
+          <span class="chip-icon">🕯️</span>
+          <span class="chip-text">Warm Acoustic Ambience</span>
+        </div>
+      </div>
+
+      <!-- Narrative & Visual Story Row -->
+      <div class="about-story-row">
+        <div class="about-story-img-wrap">
+          <img src="images/cafe_interior_arch.jpg" alt="Caffeine Cove warm arch interior with ambient lighting" class="about-story-img" loading="lazy">
+          <div class="about-img-tag">A Corner For Every Mood</div>
+        </div>
+        <div class="about-story-text">
+          <h4 class="about-subheading">A Sanctuary Designed for Slowing Down</h4>
+          <p>
+            Every detail of Caffeine Cove was crafted with intention. From our bentwood chairs and hand-turned ceramic mugs to the amber pendant lighting and gentle lo-fi melodies, we created a third space where time feels unhurried.
+          </p>
+          <p>
+            Whether you are journaling in a sunlit corner, catching up with an old friend over a Velvet Latte, or seeking a quiet nook to read, our doors are open with open arms and freshly brewed coffee.
+          </p>
+        </div>
+      </div>
+
+      <!-- The 4 Pillars of Our Craft -->
+      <div class="modal-section-title-wrap">
+        <span class="section-eyebrow eyebrow-light">THE FOUR PILLARS OF OUR CRAFT</span>
+      </div>
+      <div class="pillars-grid four-pillars-grid">
         <div class="pillar-box">
           <span class="pillar-num">01</span>
-          <h4>Ethical Sourcing</h4>
-          <p>We work directly with sustainable smallholder farms across Ethiopia, Colombia, and Chikmagalur. Fair pay and regenerative farming ensure vibrant coffee harvest.</p>
+          <h4>Ethical Bean Sourcing</h4>
+          <p>Direct-trade relationships with organic smallholder farms in Chikmagalur, Huila Colombia, and Ethiopia. Fair living wages and sustainable shade-grown harvests.</p>
         </div>
         <div class="pillar-box">
           <span class="pillar-num">02</span>
-          <h4>Artisan Small-Batch Roasting</h4>
-          <p>Roasted locally twice weekly in 12kg batches. We profile each bean specifically to highlight floral aromatics, natural sweetness, and silky mouthfeel.</p>
+          <h4>Small-Batch Profiling</h4>
+          <p>Roasted locally twice every week in 12kg cast-iron drums. We meticulously profile every origin to celebrate floral aromatics, natural caramelization, and berry sweetness.</p>
         </div>
         <div class="pillar-box">
           <span class="pillar-num">03</span>
-          <h4>Precision Extraction</h4>
-          <p>Every espresso is dialed in every morning to within 0.1g dose accuracy and tailored water TDS mineral levels. No shortcuts, no rush.</p>
+          <h4>9-Bar Precision Pour</h4>
+          <p>Every morning, our baristas dial in the espresso dose to within 0.1g accuracy, matched with custom mineral-remineralized brewing water for silky microfoam.</p>
+        </div>
+        <div class="pillar-box">
+          <span class="pillar-num">04</span>
+          <h4>Hearth-Baked Daily</h4>
+          <p>Our bakery fires at 6:00 AM daily with French butter croissants, rich Belgian brownies, and artisanal Basque cheesecake made without artificial preservatives.</p>
         </div>
       </div>
+
+      <!-- Cafe Visitor Essentials & Action Buttons -->
+      <div class="cafe-essentials-card">
+        <div class="essentials-info">
+          <div class="ess-item">
+            <span class="ess-label">Opening Hours:</span>
+            <span class="ess-val">Mon – Sun: 8:00 AM – 11:00 PM</span>
+          </div>
+          <div class="ess-item">
+            <span class="ess-label">Atmosphere:</span>
+            <span class="ess-val">Cozy Seating · Fast Wi-Fi · Pet Friendly Patio</span>
+          </div>
+          <div class="ess-item">
+            <span class="ess-label">Dietary:</span>
+            <span class="ess-val">Oat, Almond & Soy Milk · Vegan & Gluten-Friendly Options</span>
+          </div>
+        </div>
+        <div class="essentials-actions">
+          <button id="modal-reserve-btn" class="btn btn-caramel">Reserve a Table</button>
+          <a href="#signature-menu" id="modal-menu-btn" class="btn btn-pill-outline">View Menu</a>
+        </div>
+      </div>
+
     </div>
   </div>
 
