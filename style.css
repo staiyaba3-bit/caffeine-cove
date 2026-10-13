@@ -1595,10 +1595,15 @@ ul, ol {
    10. SECTION 11: COFFEE AND LITTLE TREATS
    -------------------------------------------------- */
 .treats-section {
-  background-color: var(--bg-cream);
+  background-color: var(--bg-ivory);
   padding: var(--space-4xl) 0;
   position: relative;
   overflow: hidden;
+}
+
+.treats-container {
+  position: relative;
+  z-index: 2;
 }
 
 .treats-header-row {
@@ -2373,6 +2378,7 @@ ul, ol {
   background-color: var(--bg-ivory);
   padding: var(--space-4xl) 0;
   position: relative;
+  overflow: hidden;
 }
 
 .visit-container {
@@ -2380,6 +2386,8 @@ ul, ol {
   grid-template-columns: 1fr 1fr 1.25fr;
   gap: clamp(24px, 3.5vw, 44px);
   align-items: start;
+  position: relative;
+  z-index: 2;
 }
 
 /* Left Facade Photo */
